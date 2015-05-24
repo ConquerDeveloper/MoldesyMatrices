@@ -1,0 +1,27 @@
+<html>
+<head>
+
+</head>
+<body>
+<form action="">
+    <select name="valores" id="valores">
+        <option value="">Seleccione</option>
+        <option value="mil" onclick="calcular()" data-attribute="i" id="hola">1000</option>
+        <option value="dosmil" onclick="calcular()" data-attribute="i">2000</option>
+        <option value="tresmil" onclick="calcular()" data-attribute="i">3000</option>
+        <option value="cuatromil" onclick="calcular()" data-attribute="i">4000</option>
+        <option value="cincomil" onclick="calcular()" data-attribute="i">5000</option>
+    </select>
+</form>
+<script src="js/vendor/jquery.min.js"></script>
+<script>
+    function calcular(){
+        var i;
+        if($("#hola").val() == "mil"){
+            i = 1000;
+            alert(i);
+        }
+    }
+</script>
+</body>
+</html>
