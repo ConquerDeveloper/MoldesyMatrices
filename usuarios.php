@@ -111,23 +111,29 @@ class Subir {
         $this->archivoSubido = $file;
     }
     public function Upload(){
+        $archivo = $_FILES[$this->archivoSubido]['name'];
         $directorio = 'imagenes/';
         $directorio_objetivo = $directorio .  basename($_FILES[$this->archivoSubido]['name']);
         $tipoImagen = pathinfo($directorio_objetivo,PATHINFO_EXTENSION);
         $verificarImagen = getimagesize($_FILES[$this->archivoSubido]['tmp_name']);
-        if($verificarImagen != false){
-            if($tipoImagen !== 'jpg' && $tipoImagen !== 'jpeg' && $tipoImagen !== 'png'){
-                echo 'Respeta los formatos de imagenes pl0x veserro :v oshe cy oshe cy gggg';
-            } else {
-                move_uploaded_file($_FILES[$this->archivoSubido]['tmp_name'],$directorio_objetivo);
-                $query_image = "INSERT INTO imagenes (nombre_imagen,imagen) VALUES('$this->nombreArchivo','$directorio_objetivo')";
-                mysql_query($query_image);
-                echo 'El archivo ' . $_FILES[$this->archivoSubido]['name'] . ' ha sido subido con éxito';
-            }
+        if($_FILES[$this->archivoSubido]['error'] > 0){
+            echo $_FILES[$this->archivoSubido]['error'];
         } else {
-            echo 'el archivo no es una imagen pl0x :v';
+            if($verificarImagen != false){
+                if($tipoImagen !== 'jpg' && $tipoImagen !== 'jpeg' && $tipoImagen !== 'png'){
+                     include 'vista-formato.php';
+                     return false;
+                } else {
+                     move_uploaded_file($_FILES[$this->archivoSubido]['tmp_name'],$directorio_objetivo);
+                    $query_image = "INSERT INTO imagenes (nombre_imagen,imagen) VALUES('$archivo','$directorio_objetivo')";
+                    mysql_query($query_image);
+                     include 'vista-subido.php';
+                 }
+             } else {
+                 include 'vista-no-imagen.php';
+                 return false;
+            }
         }
-
     }
 }
 ?>
