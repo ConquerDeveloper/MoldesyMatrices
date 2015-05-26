@@ -42,29 +42,11 @@ if(!isset($_SESSION['usuario'])){
             (id_cita, id_usuario,servicio,fecha,nombre_usuario,cedula_usuario,rif_usuario,cantidad, aprobado,direccion,numero)
             VALUES('null','$id_usuario','$cita','$fecha',
             '$usuario','$cedula','$rif','$cantidad','no','$direccion_usuario','$numero_usuario')";
-    if($_POST['select-cita'] == 'mantenimientoc'){
+    if($_POST['select-cita'] == 'Mantenimiento Correctivo'){
         $consulta = mysql_query($query_1);
-        /*if($consulta){
-            ?>
-            <script>
-                setTimeout(function(){
-                    window.location.href="<?php echo 'inicio.php?id=' . $_SESSION['id_usuario'];?>"
-                }, 3000);
-            </script>
-            <?php
-        }*/
     } else {
-        if($_POST['select-cita'] == 'mantenimientop'){
+        if($_POST['select-cita'] == 'Mantenimiento Preventivo'){
             $consulta2 = mysql_query($query_2);
-            /*if($consulta2){
-            ?>
-            <script>
-                setTimeout(function(){
-                    window.location.href="<?php echo 'inicio.php?id=' . $_SESSION['id_usuario'];?>"
-                }, 3000);
-            </script>
-            <?php
-            }*/
         }
     }
     ?>
