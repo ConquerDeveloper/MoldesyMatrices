@@ -33,7 +33,7 @@
                         <a href="#portfolio" onclick = $("#menu-close").click(); >Modificar datos</a>
                     </li>
                     <li>
-                        <a href="salir.php" onclick = $("#menu-close").click(); >Cerrar sesión</a>
+                        <a href="salir.php" onclick = $("#menu-close").click(); >Salir</a>
                     </li>
                 </ul>
             </div>
