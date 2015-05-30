@@ -3,7 +3,8 @@
 require_once('config.php');
 
 //Se crea la clase Registro, la cual se encargara de registrar a los nuevos usuarios
-class Registro {
+class Registro
+{
 
     //Se crean las propiedades que tomaran los valores que se ingresen en el formulario
     protected $nombre;
@@ -17,7 +18,8 @@ class Registro {
     protected $numero;
 
     //Se crea un metodo constructor para iniciar las propiedades
-    public function Inicializar($name,$mail,$password,$rpt,$id,$emp,$num_rif,$address,$number){
+    public function Inicializar($name, $mail, $password, $rpt, $id, $emp, $num_rif, $address, $number)
+    {
         $this->nombre = addslashes($_POST[$name]);
         $this->correo = addslashes($_POST[$mail]);
         $this->pass = addslashes($_POST[$password]);
@@ -30,16 +32,18 @@ class Registro {
     }
 
     //Se crea un metodo que se encarga de verificar que todos los campos fueron llenados
-    public function Registrar(){
-        if(isset($this->nombre) && !empty($this->nombre)
-        && isset($this->correo) && !empty($this->correo)
-        && isset($this->pass) && !empty($this->pass)
-        && isset($this->repeat) && !empty($this->repeat)
-        && isset($this->cedula) && !empty($this->cedula)
-        && isset($this->empresa) && !empty($this->empresa)
-        && isset($this->rif) && !empty($this->rif)
-        && isset($this->direccion) && !empty($this->direccion)
-        && isset($this->numero) && !empty($this->numero)){
+    public function Registrar()
+    {
+        if (isset($this->nombre) && !empty($this->nombre)
+            && isset($this->correo) && !empty($this->correo)
+            && isset($this->pass) && !empty($this->pass)
+            && isset($this->repeat) && !empty($this->repeat)
+            && isset($this->cedula) && !empty($this->cedula)
+            && isset($this->empresa) && !empty($this->empresa)
+            && isset($this->rif) && !empty($this->rif)
+            && isset($this->direccion) && !empty($this->direccion)
+            && isset($this->numero) && !empty($this->numero)
+        ) {
             $q = "INSERT INTO
         usuarios(nombre_usuario,
         correo_usuario,
@@ -55,32 +59,42 @@ class Registro {
             mysql_query($q);
         }
     }
-    public function EnviarCorreo(){
+
+    public function EnviarCorreo()
+    {
         $asunto = 'Titulo';
         $msg = 'Bienvenido';
-        mail($this->correo,$asunto,$msg);
+        mail($this->correo, $asunto, $msg);
     }
-    public function Redireccionar(){ //Una vez registrado, este metodo se encarga de mostrar un mensaje de bienvenida y redireccionar a la pagina de inicio
+
+    public function Redireccionar()
+    { //Una vez registrado, este metodo se encarga de mostrar un mensaje de bienvenida y redireccionar a la pagina de inicio
         ?>
         <script>
-            setTimeout(function(){
-                window.location.href="index.php";
+            setTimeout(function () {
+                window.location.href = "index.php";
             }, 5000);
         </script>
-        <?php
+    <?php
     }
 }
-class Inicio extends Registro {
-    public function Inicializar($userSesion,$passSesion){
-       $this->nombre = addslashes($_POST[$userSesion]);
+
+class Inicio extends Registro
+{
+    public function Inicializar($userSesion, $passSesion)
+    {
+        $this->nombre = addslashes($_POST[$userSesion]);
         $this->pass = addslashes($_POST[$passSesion]);
     }
-    public function iniciarSesion(){
-        if(isset($this->nombre) && !empty($this->nombre)
-        && isset($this->pass) && !empty($this->pass)){
+
+    public function iniciarSesion()
+    {
+        if (isset($this->nombre) && !empty($this->nombre)
+            && isset($this->pass) && !empty($this->pass)
+        ) {
             $query = mysql_query("SELECT * FROM usuarios WHERE nombre_usuario = '$this->nombre'");
 
-            while($query_sesion = mysql_fetch_array($query)) {
+            while ($query_sesion = mysql_fetch_array($query)) {
                 if ($this->pass == $query_sesion['contra_usuario']) {
                     $_SESSION['usuario'] = $this->nombre;
                     $_SESSION['id_usuario'] = $query_sesion['id_usuario'];
@@ -90,50 +104,86 @@ class Inicio extends Registro {
                     $_SESSION['numero'] = $query_sesion['numero'];
                 }
             }
-         }
+        }
     }
-    public function mostrarNombre($data){
+
+    public function mostrarNombre($data)
+    {
         $_q = "SELECT * FROM usuarios WHERE id_usuario = '" . addslashes(trim($_GET['id'])) . "'";
         $_q_ = mysql_query($_q);
         while ($consulta = mysql_fetch_array($_q_)) {
             echo strtoupper($consulta['nombre_usuario']);
         }
     }
-    public function Redirecciona(){
+
+    public function Redirecciona()
+    {
         header('Location: inicio.php?id=' . $_SESSION['id_usuario']);
     }
 }
-class Subir {
+
+class Subir
+{
     protected $nombreArchivo;
     protected $archivoSubido;
-    public function __construct($name,$file){
+
+    public function __construct($name, $file)
+    {
         $this->nombreArchivo = $name;
         $this->archivoSubido = $file;
     }
-    public function Upload(){
+
+    public function Upload()
+    {
         $archivo = $_FILES[$this->archivoSubido]['name'];
         $directorio = 'imagenes/';
-        $directorio_objetivo = $directorio .  basename($_FILES[$this->archivoSubido]['name']);
-        $tipoImagen = pathinfo($directorio_objetivo,PATHINFO_EXTENSION);
+        $directorio_objetivo = $directorio . basename($_FILES[$this->archivoSubido]['name']);
+        $tipoImagen = pathinfo($directorio_objetivo, PATHINFO_EXTENSION);
         $verificarImagen = getimagesize($_FILES[$this->archivoSubido]['tmp_name']);
-        if($_FILES[$this->archivoSubido]['error'] > 0){
+        if ($_FILES[$this->archivoSubido]['error'] > 0) {
             echo $_FILES[$this->archivoSubido]['error'];
         } else {
-            if($verificarImagen != false){
-                if($tipoImagen !== 'jpg' && $tipoImagen !== 'jpeg' && $tipoImagen !== 'png'){
-                     include 'vista-formato.php';
-                     return false;
+            if ($verificarImagen != false) {
+                if ($tipoImagen !== 'jpg' && $tipoImagen !== 'jpeg' && $tipoImagen !== 'png') {
+                    include 'vista-formato.php';
+                    return false;
                 } else {
-                     move_uploaded_file($_FILES[$this->archivoSubido]['tmp_name'],$directorio_objetivo);
+                    move_uploaded_file($_FILES[$this->archivoSubido]['tmp_name'], $directorio_objetivo);
                     $query_image = "INSERT INTO imagenes (nombre_imagen,imagen) VALUES('$archivo','$directorio_objetivo')";
                     mysql_query($query_image);
-                     include 'vista-subido.php';
-                 }
-             } else {
-                 include 'vista-no-imagen.php';
-                 return false;
+                    include 'vista-subido.php';
+                }
+            } else {
+                include 'vista-no-imagen.php';
+                return false;
             }
         }
     }
 }
+
+class Admin
+{
+    protected $user;
+    protected $password;
+
+    public function __construct($usuario, $contrasena)
+    {
+        $this->user = addslashes($_POST[$usuario]);
+        $this->password = addslashes($_POST[$contrasena]);
+    }
+
+    public function VerificarAdmin()
+    {
+        if (isset($this->user) && !empty($this->user) && isset($this->password) && !empty($this->password)) {
+            $query = "SELECT nombre_admin,contra_admin,contra_md5 FROM admins WHERE nombre_admin = '$this->user'";
+            $_query_ = mysql_query($query);
+            while ($fetch = mysql_fetch_array($_query_)) {
+                if ($fetch['nombre_admin'] !== $this->user) {
+                    echo 'Usuario Incorrecto';
+                }
+            }
+        }
+    }
+}
+
 ?>
