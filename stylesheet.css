@@ -155,7 +155,7 @@ Image credits: unsplash.com
 }
 .fade-carousel .carousel-indicators > li {
     margin: 0 2px;
-    background-color: #2ecc71;
+    background-color: #1abc9c;
     border-color: #1abc9c;
     opacity: .7;
 }
@@ -271,7 +271,7 @@ Image credits: unsplash.com
     color: #fff;
 }
 .modal-header {
-    background: #42b5d6;
+    background: #1abc9c;
     color: #fff;
     border-radius: 4px;
 }
@@ -444,6 +444,13 @@ footer a {
     padding-top: 35px;
     padding-left: 50px;
 }
+#li-nav {
+    padding-right: 28px;
+}
+#navbar .nav li a {
+    color: rgb(99, 99, 99);
+    padding-top: 35px;
+}
 .navbar-inverse .navbar-nav > .open > .dropdown-menu > li > a {
     color: #fff;
     background: #444;
@@ -580,7 +587,19 @@ footer a {
 .panel-text {
     color: #636363;
 }
+.panel-margen {
+    margin:0px 0px 0px !important;
+}
+.panel-verde {
+    background: #1abc9c;
+}
+.panel-fondo {
+    color:#fff;
+}
 .fui-calendar,.fui-document,.fui-upload {
     margin-left: 43%;
     font-size: 50px;
+}
+.nav-admin {
+    background: #363636;
 }
