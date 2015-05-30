@@ -174,15 +174,16 @@ class Admin
 
     public function VerificarAdmin()
     {
-        if (isset($this->user) && !empty($this->user) && isset($this->password) && !empty($this->password)) {
-            $query = "SELECT nombre_admin,contra_admin,contra_md5 FROM admins WHERE nombre_admin = '$this->user'";
-            $_query_ = mysql_query($query);
-            while ($fetch = mysql_fetch_array($_query_)) {
-                if ($fetch['nombre_admin'] !== $this->user) {
-                    echo 'Usuario Incorrecto';
-                }
-            }
+        $query = "SELECT nombre_admin,
+            contra_admin
+            FROM admins
+            WHERE nombre_admin = '$this->user'
+            AND contra_admin = '$this->password'";
+        $query_ = mysql_query($query);
+        while ($row = mysql_fetch_array($query_)) {
+            echo $row['nombre_admin'];
         }
+
     }
 }
 

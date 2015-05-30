@@ -27,7 +27,7 @@
                         <a href="<?php echo 'subir.php?id=' . $_SESSION['id_usuario'];?>" onclick = $("#menu-close").click(); >Subir Transferencias</a>
                     </li>
                     <li>
-                        <a href="#" onclick = $("#menu-close").click(); >Historial de citas</a>
+                        <a href="<?php echo 'historial.php?id=' . $_SESSION['id_usuario'];?>" onclick = $("#menu-close").click(); >Historial de citas</a>
                     </li>
                     <li>
                         <a href="#portfolio" onclick = $("#menu-close").click(); >Modificar datos</a>

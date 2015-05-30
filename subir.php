@@ -22,10 +22,10 @@ if(!isset($_SESSION['usuario'])){
 <?php require_once('nav.php');?>
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="text-center panel-text">Lore Ipsum Dolor</h6>
+                    <h3 class="text-center panel-text">Lore Ipsum Dolor</h3>
                     <p class="text-justify panel-text">
                         Lorem ipsum dolor sit amecLorem ipsum dolor sit amecLorem ipsum dolor sit amec
                         Lorem ipsum dolor sit amecLorem ipsum dolor sit amecLorem ipsum dolor sit amec
@@ -34,7 +34,9 @@ if(!isset($_SESSION['usuario'])){
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form name="formularioSubir" action="<?php echo 'upload.php?id=' . $_SESSION['id_usuario'];?>" method="post" enctype="multipart/form-data" id="formularioSubir">
@@ -47,26 +49,13 @@ if(!isset($_SESSION['usuario'])){
                             <input type="file" class="form-control" onclick="removerClases()" name="archivoSubido" id="archivoSubido"/>
                             <span class="blanco-2"></span>
                         </div>
-                        <button type="submit" class="btn btn-danger btn-block" onclick="validarSubida();">Subir</button>
+                        <button type="submit" class="btn btn-danger btn-block" onclick="validarSubida();">SUBIR</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h6 class="text-center panel-text">Lore Ipsum Dolor</h6>
-                    <p class="text-justify panel-text">
-                        Lorem ipsum dolor sit amecLorem ipsum dolor sit amecLorem ipsum dolor sit amec
-                        Lorem ipsum dolor sit amecLorem ipsum dolor sit amecLorem ipsum dolor sit amec
-                        Lorem ipsum dolor sit amec.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <?php require_once('footer2.php');?>

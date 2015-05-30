@@ -32,7 +32,7 @@
                         Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
                     </p>
                     <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'inicio.php?id=' . $_SESSION['id_usuario'];?>'">
-                        Volver al Inicio
+                        INICIO
                     </button>
                 </div>
             </div>

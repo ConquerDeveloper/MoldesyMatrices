@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once('usuarios.php');
+$inicio = new Inicio('nombreInicio', 'passInicio');
+$inicio->iniciarSesion();
+if(isset($_SESSION['usuario'])){
+    header('Location: inicio.php?id=' . $_SESSION['id_usuario']);
+} else {
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -242,8 +252,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" onclick="validarRegistro()" class="btn btn-info">Guardar</button>
+                <button type="button" onclick="validarRegistro()" class="btn btn-danger btn-lg">Guardar</button>
                 </form>
             </div>
         </div>
@@ -275,14 +284,14 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" onclick="validarInicio()"  class="btn btn-info">Entrar</button>
+                <button type="button" onclick="validarInicio()"  class="btn btn-danger btn-lg">Entrar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
     <?php require_once('footer.php');?>
+    <?php }?>
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script src="app.js"></script>

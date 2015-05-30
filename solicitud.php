@@ -9,10 +9,12 @@ if(!isset($_SESSION['usuario'])){
 $id = $_GET['id'];
 $sql = "SELECT * FROM citas WHERE id_usuario = '$id'";
 $variable = mysql_query($sql);
-$aprobado = mysql_fetch_array($variable);
-if($aprobado['aprobado'] == 'no'){
-    require_once('vista-no-aprobada.php');
-} else {
+while($aprobado = mysql_fetch_array($variable)) {
+    if ($aprobado['aprobado'] == 'no') {
+        include 'vista-no-aprobada.php';
+        return false;
+    } else {
+    if($aprobado['aprobado'] == 'si'){
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,8 +61,8 @@ if($aprobado['aprobado'] == 'no'){
                             <label for="">Servicio a solicitar:</label>
                             <select class="form-control" name="select-cita" id="select-cita">
                                 <option value="seleccione" onclick="esconderTextarea(),removerClases()">-Seleccione-</option>
-                                <option value="mantenimientop" onclick="esconderTextarea(),removerClases()" id="mantenimientop">Mantenimiento Preventivo</option>
-                                <option value="mantenimientoc" onclick="mostrarTextarea(),removerClases()"  id="mantenimientoc">Mantenimiento Correctivo</option>
+                                <option value="Mantenimiento Preventivo" onclick="esconderTextarea(),removerClases()" id="mantenimientop">Mantenimiento Preventivo</option>
+                                <option value="Mantenimiento Correctivo" onclick="mostrarTextarea(),removerClases()"  id="mantenimientoc">Mantenimiento Correctivo</option>
                             </select>
                             <span class="blanco1"></span>
                         </div>
@@ -78,7 +80,7 @@ if($aprobado['aprobado'] == 'no'){
                         </div>
                         <div class="form-group">
                             <label for="">Fecha de la Cita:</label>
-                            <input type="date" class="form-control" onclick="removerClases()" onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
+                            <input type="date" class="form-control" onclick="removerClases();validarFecha()" onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
                             <span class="blanco3"></span>
                         </div>
                         <div class="form-group" id="input-textarea">
@@ -150,7 +152,9 @@ if($aprobado['aprobado'] == 'no'){
 
 <?php require_once('footer2.php');?>
 <?php
+        }
     }
+}
 }
 ?>
 <script src="js/vendor/jquery.min.js"></script>
@@ -179,7 +183,6 @@ if($aprobado['aprobado'] == 'no'){
     $(function () {
         $("#select-fecha").datepicker();
     });
-
 </script>
 </body>
 </html>

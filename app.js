@@ -190,7 +190,7 @@ function validarSolicitud(){
         $("#select-fecha").addClass("inputRojo");
         return false;
     }
-    if($("#select-cita option:selected").val() == "mantenimientoc"){
+    if($("#select-cita option:selected").val() == "Mantenimiento Correctivo"){
         if($("#textarea-comentario").val() == ""){
             $("#textarea-comentario").addClass("inputRojo");
             $(".blanco4").addClass("inputIncompleto");

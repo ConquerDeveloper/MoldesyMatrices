@@ -89,7 +89,9 @@ if(!isset($_SESSION['usuario'])){
                         <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
                             Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
                             Lorem ipsum dolor sit amec.</p>
-                        <button class="btn btn-danger btn-block">Historial de Citas</button>
+                        <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'historial.php?id=' . $_SESSION['id_usuario']; ?>'">
+                            Historial de Citas
+                        </button>
                     </div>
                 </div>
             </div>
