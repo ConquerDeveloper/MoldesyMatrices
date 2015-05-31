@@ -1,20 +1,18 @@
 <?php
-//archivo con fallas
 session_start();
 require_once('usuarios.php');
 $inicio = new Inicio('nombreInicio', 'passInicio');
 $inicio->iniciarSesion();
-if(!isset($_SESSION['usuario'])){
+if (!isset($_SESSION['usuario'])){
     header('Location: index.php');
 } else {
 $id = $_GET['id'];
 $sql = "SELECT * FROM citas WHERE id_usuario = '$id'";
 $variable = mysql_query($sql);
-while($aprobado = mysql_fetch_array($variable)) {
-    if ($aprobado['aprobado'] == 'no') {
-        require_once('vista-no-aprobada.php');
-    } else {
-    if($aprobado['aprobado'] == 'si'){
+$aprobado = mysql_fetch_array($variable);
+if ($aprobado['aprobado'] == 'no'){
+    require_once('vista-no-aprobada.php');
+} else {
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,7 +27,7 @@ while($aprobado = mysql_fetch_array($variable)) {
     <link rel="stylesheet" href="stylesheet.css"/>
 </head>
 <body style="background:#e1e1e1">
-<?php require_once('nav.php');?>
+<?php require_once('nav.php'); ?>
 
 <div class="container">
     <div class="row">
@@ -37,18 +35,21 @@ while($aprobado = mysql_fetch_array($variable)) {
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h6 class="text-center panel-text">Lorem Ipsum Dolor</h6>
+
                     <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h6 class="text-center panel-text">Lorem Ipsum Dolor</h6>
+
                     <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h6 class="text-center panel-text">Lorem Ipsum Dolor</h6>
+
                     <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
                 </div>
             </div>
@@ -56,13 +57,19 @@ while($aprobado = mysql_fetch_array($variable)) {
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="<?php echo 'citas.php?id=' . $_SESSION['id_usuario'];?>" method="post" id="formularioClausulas">
+                    <form action="<?php echo 'citas.php?id=' . $_SESSION['id_usuario']; ?>" method="post"
+                          id="formularioClausulas">
                         <div class="form-group">
                             <label for="">Servicio a solicitar:</label>
                             <select class="form-control" name="select-cita" id="select-cita">
-                                <option value="seleccione" onclick="esconderTextarea(),removerClases()">-Seleccione-</option>
-                                <option value="Mantenimiento Preventivo" onclick="esconderTextarea(),removerClases()" id="mantenimientop">Mantenimiento Preventivo</option>
-                                <option value="Mantenimiento Correctivo" onclick="mostrarTextarea(),removerClases()"  id="mantenimientoc">Mantenimiento Correctivo</option>
+                                <option value="seleccione" onclick="esconderTextarea(),removerClases()">-Seleccione-
+                                </option>
+                                <option value="Mantenimiento Preventivo" onclick="esconderTextarea(),removerClases()"
+                                        id="mantenimientop">Mantenimiento Preventivo
+                                </option>
+                                <option value="Mantenimiento Correctivo" onclick="mostrarTextarea(),removerClases()"
+                                        id="mantenimientoc">Mantenimiento Correctivo
+                                </option>
                             </select>
                             <span class="blanco1"></span>
                         </div>
@@ -80,22 +87,28 @@ while($aprobado = mysql_fetch_array($variable)) {
                         </div>
                         <div class="form-group">
                             <label for="">Fecha de la Cita:</label>
-                            <input type="date" class="form-control" onclick="removerClases();validarFecha()" onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
+                            <input type="date" class="form-control" onclick="removerClases()"
+                                   onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
                             <span class="blanco3"></span>
                         </div>
                         <div class="form-group" id="input-textarea">
-                            <label for="" >Descríbanos su falla</label>
-                            <textarea name="select-comentario" id="textarea-comentario" onkeydown="removerClases()"  rows="3" class="form-control"></textarea>
+                            <label for="">Descríbanos su falla</label>
+                            <textarea name="select-comentario" id="textarea-comentario" onkeydown="removerClases()"
+                                      rows="3" class="form-control"></textarea>
                         </div>
                         <span class="blanco4"></span>
+
                         <div class="form-group">
                             <p class="text-center alert alert-warning" style="font-size:15px">
-                                Al hacer click en el botón "Enviar", estás aceptando los <a href="javascript:void(0)" data-toggle="modal" data-target="#modalCondiciones">
+                                Al hacer click en el botón "Enviar", estás aceptando los <a href="javascript:void(0)"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#modalCondiciones">
                                     Términos y Condiciones de la empresa</a>.
                             </p>
                             <span class="total"></span>
                         </div>
-                        <button type="button" class="btn btn-danger btn-block" onclick="validarSolicitud()">Enviar</button>
+                        <button type="button" class="btn btn-danger btn-block" onclick="validarSolicitud()">Enviar
+                        </button>
                     </form>
                 </div>
             </div>
@@ -105,17 +118,21 @@ while($aprobado = mysql_fetch_array($variable)) {
 
 
 <!--Modal de Cláusulas de cita-->
-<div class="modal fade" id="modalClausulas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalClausulas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title text-center" id="myModalLabel">Cláusulas de la cita</h4>
             </div>
             <div class="modal-body">
                 <p class="modal-texto text-justify">
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
+                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor
+                    sit amec
+                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor
+                    sit amec
                     Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
                 </p>
             </div>
@@ -128,17 +145,21 @@ while($aprobado = mysql_fetch_array($variable)) {
 
 
 <!--Modal Terminos y Condiciones-->
-<div class="modal fade" id="modalCondiciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCondiciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title text-center" id="myModalLabel">Términos y Condiciones</h4>
             </div>
             <div class="modal-body">
                 <p class="modal-texto text-justify">
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
+                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor
+                    sit amec
+                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor
+                    sit amec
                     Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
                 </p>
             </div>
@@ -150,10 +171,8 @@ while($aprobado = mysql_fetch_array($variable)) {
 </div>
 
 
-<?php require_once('footer2.php');?>
+<?php require_once('footer2.php'); ?>
 <?php
-        }
-    }
 }
 }
 ?>
@@ -168,10 +187,10 @@ while($aprobado = mysql_fetch_array($variable)) {
         nextText: 'Sig>',
         currentText: 'Hoy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
         dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-        dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-        dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         weekHeader: 'Sm',
         dateFormat: 'yy/mm/dd',
         firstDay: 1,
@@ -183,6 +202,7 @@ while($aprobado = mysql_fetch_array($variable)) {
     $(function () {
         $("#select-fecha").datepicker();
     });
+
 </script>
 </body>
 </html>
