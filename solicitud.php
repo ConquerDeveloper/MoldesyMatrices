@@ -11,8 +11,7 @@ $sql = "SELECT * FROM citas WHERE id_usuario = '$id'";
 $variable = mysql_query($sql);
 while($aprobado = mysql_fetch_array($variable)) {
     if ($aprobado['aprobado'] == 'no') {
-        include 'vista-no-aprobada.php';
-        return false;
+        require_once('vista-no-aprobada.php');
     } else {
     if($aprobado['aprobado'] == 'si'){
 ?>
