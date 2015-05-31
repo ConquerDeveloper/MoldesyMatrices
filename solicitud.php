@@ -1,4 +1,5 @@
 <?php
+//archivo con fallas
 session_start();
 require_once('usuarios.php');
 $inicio = new Inicio('nombreInicio', 'passInicio');
