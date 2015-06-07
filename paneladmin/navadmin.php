@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-static-top navbar-embossed" role="navigation">
+<nav class="navbar navbar-inverse navbar-static-top navbar-embossed" role="navigation" style="background:#444444">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="paneladmin.php">

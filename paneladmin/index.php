@@ -34,7 +34,7 @@
                            id="contra-admin"/>
                     <span class="empty2"></span>
                 </div>
-                <button class="btn btn-primary btn-block" type="submit" onclick="validarFormAdmin()">Entrar</button>
+                <button class="btn btn-danger btn-block" type="submit">Entrar</button>
             </form>
         </div>
     </div>

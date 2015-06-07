@@ -8,15 +8,16 @@ $cedula = $_POST['cedula'];
 $numero = $_POST['numero'];
 $direccion = $_POST['direccion'];
 
-$query = mysql_query("UPDATE usuarios SET
+$_query_ = mysql_query("SELECT * FROM usuarios WHERE correo_usuario = '" . $correo . "'");
+
+if (mysql_num_rows($_query_) == 0) {
+    $query = mysql_query("UPDATE usuarios SET
                       nombre_usuario = '" . $nombre . "',
                       correo_usuario = '" . $correo . "',
                       cedula_usuario = '" . $cedula . "',
                       numero = '" . $numero . "',
                       direccion = '" . $direccion . "' WHERE id_usuario = '" . $id . "'");
-
-if($query){
-    echo 'cambios realizados ggg :v';
+    echo 'Cambios realizados con éxito';
 } else {
-    echo 'Oshe n0 D:';
+    echo 'E-mail en uso';
 }

@@ -5,7 +5,8 @@ class Administradores
 {
     public $admin;
     public $pass;
-    private $usuario = array();
+    public $usuario = array();
+    public $citas = array();
 
     public function Post($nombre_admin, $contra_admin)
     {
@@ -23,20 +24,42 @@ class Administradores
         }
     }
 
-    public function Redirigir()
-    {
-        header('Location: inicio.php');
-    }
-
     public function TraerUsuarios()
     {
 
-        $sql = "select * from usuarios order by nombre_usuario";
+        $sql = "SELECT * FROM usuarios ORDER BY nombre_usuario";
         $res = mysql_query($sql);
 
         while ($reg = mysql_fetch_array($res)) {
             $this->usuario[] = $reg;
         }
         return $this->usuario;
+    }
+
+    public function TraerCitas($id)
+    {
+
+        $sql = "SELECT * FROM citas WHERE id_usuario = '" . $id . "'";
+        $res = mysql_query($sql);
+
+        while ($reg = mysql_fetch_array($res)) {
+            $this->citas[] = $reg;
+        }
+        return $this->citas;
+    }
+
+    public function ValidarAdmins()
+    {
+        $_q_ = "SELECT * FROM admins
+        WHERE nombre_admin = '" . $this->admin . "'
+        AND contra_admin = '" . $this->pass . "'
+        AND contra_md5 = '" . md5($this->pass) . "'";
+        $q_ = mysql_query($_q_);
+        if (mysql_num_rows($q_) == 0) {
+            echo "No hay coincidencia <br>";
+        } else {
+            header('Location: inicio.php');
+        }
+
     }
 }
