@@ -435,6 +435,11 @@ footer a {
     color: red;
     font-size: 13px;
 }
+.fechaInvalida:after {
+    content: "Asegúrate de ingresar una fecha que no sea el día actual o anterior a este";
+    color: red;
+    font-size: 13px;
+}
 #navegador {
     background: #fff;
     height:100px;
@@ -596,10 +601,27 @@ footer a {
 .panel-fondo {
     color:#fff;
 }
-.fui-calendar,.fui-document,.fui-upload {
+.fui-calendar.calendario,.fui-document,.fui-upload {
     margin-left: 43%;
     font-size: 50px;
 }
 .nav-admin {
     background: #363636;
+}
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+table th, table td {
+    color: #363636;
+}
+#nav-admin {
+    background: #444444;
 }

@@ -3,7 +3,7 @@ session_start();
 require_once('usuarios.php');
 $inicio = new Inicio('nombreInicio', 'passInicio');
 $inicio->iniciarSesion();
-if(!isset($_SESSION['usuario'])){
+if(!isset($_SESSION['id_usuario'])){
     header('Location: index.php');
 } else {
 ?>
@@ -26,7 +26,7 @@ if(!isset($_SESSION['usuario'])){
         <div class="row">
             <div class="col-md-6">
                 <div class="jumbotron perfil-titulo">
-                    <span class="fui-calendar"></span>
+                    <span class="fui-calendar calendario"></span>
                     <p class="text-center">
                         Solicitar Cita
                     </p>

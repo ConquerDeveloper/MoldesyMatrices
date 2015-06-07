@@ -87,8 +87,13 @@ if ($aprobado['aprobado'] == 'no'){
                         </div>
                         <div class="form-group">
                             <label for="">Fecha de la Cita:</label>
-                            <input type="date" class="form-control" onclick="removerClases()"
+                            <div class="input-group">
+                                <input type="date" class="form-control" onclick="removerClases()"
                                    onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
+                                <span class="input-group-addon">
+                                    <span class="fui-calendar"></span>
+                                </span>
+                            </div>
                             <span class="blanco3"></span>
                         </div>
                         <div class="form-group" id="input-textarea">
@@ -180,29 +185,5 @@ if ($aprobado['aprobado'] == 'no'){
 <script src="js/flat-ui.min.js"></script>
 <script src="jquery-ui/jquery-ui.js"></script>
 <script src="app.js"></script>
-<script>
-    $.datepicker.regional['es'] = {
-        closeText: 'Cerrar',
-        prevText: '<Ant',
-        nextText: 'Sig>',
-        currentText: 'Hoy',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        weekHeader: 'Sm',
-        dateFormat: 'yy/mm/dd',
-        firstDay: 1,
-        isRTL: false,
-        showMonthAfterYear: false,
-        yearSuffix: ''
-    };
-    $.datepicker.setDefaults($.datepicker.regional['es']);
-    $(function () {
-        $("#select-fecha").datepicker();
-    });
-
-</script>
 </body>
 </html>

@@ -161,30 +161,4 @@ class Subir
     }
 }
 
-class Admin
-{
-    protected $user;
-    protected $password;
-
-    public function __construct($usuario, $contrasena)
-    {
-        $this->user = addslashes($_POST[$usuario]);
-        $this->password = addslashes($_POST[$contrasena]);
-    }
-
-    public function VerificarAdmin()
-    {
-        $query = "SELECT nombre_admin,
-            contra_admin
-            FROM admins
-            WHERE nombre_admin = '$this->user'
-            AND contra_admin = '$this->password'";
-        $query_ = mysql_query($query);
-        while ($row = mysql_fetch_array($query_)) {
-            echo $row['nombre_admin'];
-        }
-
-    }
-}
-
 ?>
