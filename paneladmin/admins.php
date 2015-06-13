@@ -7,6 +7,9 @@ class Administradores
     public $pass;
     public $usuario = array();
     public $citas = array();
+    public $negadas = array();
+    public $aprobadas = array();
+    public $servicio;
 
     public function Post($nombre_admin, $contra_admin)
     {
@@ -48,6 +51,24 @@ class Administradores
         return $this->citas;
     }
 
+    public function TraerAprobadas($id)
+    {
+        $sql2 = mysql_query("SELECT * FROM aprobadas WHERE id_usuario = '" . $id . "'");
+        while ($row = mysql_fetch_array($sql2)) {
+            $this->aprobadas[] = $row;
+        }
+        return $this->aprobadas;
+    }
+
+    public function TraerNegadas($id)
+    {
+        $sql2 = mysql_query("SELECT * FROM negadas WHERE id_usuario = '" . $id . "'");
+        while ($row = mysql_fetch_array($sql2)) {
+            $this->negadas[] = $row;
+        }
+        return $this->negadas;
+    }
+
     public function ValidarAdmins()
     {
         $_q_ = "SELECT * FROM admins
@@ -56,7 +77,7 @@ class Administradores
         AND contra_md5 = '" . md5($this->pass) . "'";
         $q_ = mysql_query($_q_);
         if (mysql_num_rows($q_) == 0) {
-            echo "No hay coincidencia <br>";
+            include 'vista-formulario-error.php';
         } else {
             header('Location: inicio.php');
         }

@@ -17,6 +17,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Operaciones<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="inicio.php">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mostrarCitas.php">
+                                Citas
+                            </a>
+                        </li>
+                        <li>
                             <a href="salir.php">Salir</a>
                         </li>
                     </ul>

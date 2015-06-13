@@ -20,36 +20,22 @@ $admin->Sesion();
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading panel-primary">
-                    <h1 class="panel-title text-center">
-                        Bienvenido <?= $_SESSION['admin']; ?>
-                    </h1>
-                </div>
-                <div class="panel-body">
-                    <p class="panel-text text-center">
-                        Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
-                        Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
             <div class="container">
                 <div class="row col-md-12 custyle">
+                    <h4 class="text-center">
+                        Mis Usuarios
+                    </h4>
+                    <hr/>
                     <table class="table table-striped custab">
                         <thead>
-                        <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b>Agregar nuevo usuario</a>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Cédula</th>
-                            <th>Teléfono</th>
-                            <th>Dirección</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Cédula</th>
+                            <th class="text-center">Teléfono</th>
+                            <th class="text-center">Dirección</th>
+                            <th class="text-center">Empresa</th>
+                            <th class="text-center">Rif</th>
                             <th class="text-center">Acción</th>
                         </tr>
                         </thead>
@@ -59,30 +45,40 @@ $admin->Sesion();
                             for ($i = 0; $i < sizeof($ad); $i++) {
                                 ?>
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="<?php echo 'mostrarCitas.php?id= ' . $ad[$i]['id_usuario'];?>"><?php echo $ad[$i]['nombre_usuario']; ?></a>
                                         <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>N"
                                                value="<?php echo $ad[$i]['nombre_usuario']; ?>"/>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php echo $ad[$i]['correo_usuario']; ?>
                                         <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>C"
                                                value="<?php echo $ad[$i]['correo_usuario'] ?>"/>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php echo $ad[$i]['cedula_usuario']; ?>
                                         <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>c"
                                                value="<?php echo $ad[$i]['cedula_usuario'] ?>"/>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php echo $ad[$i]['numero']; ?>
                                         <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>n"
                                                value="<?php echo $ad[$i]['numero'] ?>"/>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php echo $ad[$i]['direccion']; ?>
                                         <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>D"
                                                value="<?php echo $ad[$i]['direccion'] ?>"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php echo $ad[$i]['empresa_usuario']; ?>
+                                        <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>E"
+                                               value="<?php echo $ad[$i]['empresa_usuario'] ?>"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php echo $ad[$i]['rif_usuario']; ?>
+                                        <input type="hidden" id="<?php echo $ad[$i]['id_usuario'] ?>R"
+                                               value="<?php echo $ad[$i]['rif_usuario'] ?>"/>
                                     </td>
                                     <td class="text-center">
                                         <a class='btn btn-info btn-xs' href="javascript:void(0)" data-toggle="modal"
@@ -90,9 +86,11 @@ $admin->Sesion();
                                            onclick="var id = <?php echo $ad[$i]['id_usuario']; ?>; Editar(id);">
                                             <span class="fui-new"></span> Editar
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-xs">
+                                        <?php $nombre = $ad[$i]["nombre_usuario"]; ?>
+                                        <a href="#" class="btn btn-danger btn-xs" onclick="var id = <?php echo $ad[$i]['id_usuario']; ?>; var name = '<?php echo $nombre; ?>'; Eliminar(id,name);" data-toggle="modal" data-target="#modalEliminar">
                                             <span class="fui-cross"></span> Borrar
-                                        </a></td>
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php
                             }
@@ -124,20 +122,28 @@ $admin->Sesion();
                     <input type="text" class="form-control" id="nombre"/>
                 </div>
                 <div class="form-group">
-                    <label for="">Correo Electrónico</label>
+                    <label for="">Correo Electrónico:</label>
                     <input type="text" class="form-control" id="correo"/>
                 </div>
                 <div class="form-group">
-                    <label for="">Cédula</label>
+                    <label for="">Cédula:</label>
                     <input type="text" class="form-control" id="cedula"/>
                 </div>
                 <div class="form-group">
-                    <label for="">Teléfono</label>
+                    <label for="">Teléfono:</label>
                     <input type="text" class="form-control" id="numero"/>
                 </div>
                 <div class="form-group">
-                    <label for="">Dirección</label>
+                    <label for="">Dirección:</label>
                     <input type="text" class="form-control" id="direccion"/>
+                </div>
+                <div class="form-group">
+                    <label for="">Empresa:</label>
+                    <input type="text" class="form-control" id="empresa"/>
+                </div>
+                <div class="form-group">
+                    <label for="">Rif de la Empresa:</label>
+                    <input type="text" class="form-control" id="rif"/>
                 </div>
             </div>
             <div class="modal-footer">
@@ -149,47 +155,32 @@ $admin->Sesion();
 </div>
 
 
+<!--Modal de elimiacion de usuarios-->
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Eliminar Usuario</h4>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">
+                    ¿Está seguro de que desea eliminar a <?php echo ucfirst("<span id='nom'></span>"); ?>?
+                    <input type="hidden" value="" id="nombreUsuario"/>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" onclick="EliminarUsuario()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="../js/vendor/jquery.min.js"></script>
 <script src="../js/flat-ui.min.js"></script>
 <script src="../app.js"></script>
-<script>
-    function Editar(id) {
-        $("#id").val(id);
-        var nom = $("#" + id + "N").val();
-        var correo = $("#" + id + "C").val();
-        var cedula = $("#" + id + "c").val();
-        var numero = $("#" + id + "n").val();
-        var direccion = $("#" + id + "D").val();
-        $("#nombre").val(nom);
-        $("#correo").val(correo);
-        $("#cedula").val(cedula);
-        $("#numero").val(numero);
-        $("#direccion").val(direccion);
-    }
-    function Edicion() {
-        $.ajax({
-            url: "editar.php",
-            type: "POST",
-            data: {
-                id: $("#id").val(),
-                nombre: $("#nombre").val(),
-                correo: $("#correo").val(),
-                cedula: $("#cedula").val(),
-                numero: $("#numero").val(),
-                direccion: $("#direccion").val()
-            },
-            success: function (data) {
-                if (data == "Cambios realizados con éxito") {
-                    alert(data);
-                    self.location.reload();
-                } else {
-                    if (data == "E-mail en uso") {
-                        alert(data);
-                    }
-                }
-            }
-        });
-    }
-</script>
 </body>
 </html>

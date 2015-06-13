@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="text-center">Sistema de Administración</h4>
+            <h4 class="text-center">Sistema de Administración Moldes y Matrices C.A.</h4>
             <hr/>
         </div>
     </div>
