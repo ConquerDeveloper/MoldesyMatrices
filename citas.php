@@ -34,14 +34,15 @@ $rif = $_SESSION['rif'];
 $cantidad = $_POST['select-numero'];
 $direccion_usuario = $_SESSION['direccion'];
 $numero_usuario = $_SESSION['numero'];
+$valor = $_POST['valor'];
 $query_1 = "INSERT INTO citas
-            (id_cita, id_usuario,servicio,fecha,descripcion,nombre_usuario,cedula_usuario,rif_usuario,cantidad, aprobado,direccion,numero)
+            (id_cita, id_usuario,servicio,fecha,descripcion,nombre_usuario,cedula_usuario,rif_usuario,cantidad, aprobado,direccion,numero,valor)
             VALUES('null','$id_usuario','$cita','$fecha','$comentario',
-            '$usuario','$cedula','$rif','$cantidad','no','$direccion_usuario','$numero_usuario')";
+            '$usuario','$cedula','$rif','$cantidad','no','$direccion_usuario','$numero_usuario','$valor')";
 $query_2 = "INSERT INTO citas
-            (id_cita, id_usuario,servicio,fecha,nombre_usuario,cedula_usuario,rif_usuario,cantidad, aprobado,direccion,numero)
+            (id_cita, id_usuario,servicio,fecha,nombre_usuario,cedula_usuario,rif_usuario,cantidad, aprobado,direccion,numero,valor)
             VALUES('null','$id_usuario','$cita','$fecha',
-            '$usuario','$cedula','$rif','$cantidad','no','$direccion_usuario','$numero_usuario')";
+            '$usuario','$cedula','$rif','$cantidad','no','$direccion_usuario','$numero_usuario','$valor')";
 if ($_POST['select-cita'] == 'Mantenimiento Correctivo') {
     $consulta = mysql_query($query_1);
 } else {

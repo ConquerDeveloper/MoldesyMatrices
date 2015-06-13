@@ -6,6 +6,14 @@ $(window).scroll(function () {
         $(".navbar-fixed-top").removeClass("top-nav-collapse");
     }
 });
+function Scroll() {
+    $("html,body").animate({
+        scrollTop: 0
+    }, "slow");
+    setTimeout(function(){
+        $("#triggerModal").trigger("click");
+    }, 500);
+}
 $("#modalRegistro, #modalInicio").on("shown.bs.modal", function () {
     $("#nombreUsuario,#nombreInicio").focus();
 });
@@ -142,7 +150,7 @@ function removerClases() {
     $(".vacio5").removeClass("cedulaExiste");
     $(".vacio2").removeClass("correoInvalido");
     $(".vacio2").removeClass("correoExiste");
-    $(".vacio3").removeClass("noCoinciden");
+    $(".vacio4").removeClass("noCoinciden");
     $(".vacio1").removeClass("usuarioExistente");
     $(".blank2").removeClass("cuentaInexistente");
     $(".empty2").removeClass("cuentaInexistente");
@@ -170,13 +178,25 @@ $("#menu-toggle").click(function (e) {
 $("#modalClausulas").modal({
     show: true
 });
-$("#input-textarea").hide();
-function mostrarTextarea() {
-    $("#input-textarea").show("slow");
-}
-function esconderTextarea() {
-    $("#input-textarea").hide("slow");
-}
+$(function () {
+    $("#select-cita").change(function(){
+        if($(this).val() == "Mantenimiento Correctivo"){
+            $("#input-textarea").slideToggle();
+        } else if($(this).val() == "Mantenimiento Preventivo"){
+            $("#input-textarea").hide("slow");
+        }
+        if($(this).val() !== "seleccione"){
+            $(this).removeClass("inputRojo");
+            $(".blanco1").removeClass("inputIncompleto");
+        }
+    });
+    $("#select-numero").change(function(){
+        if($(this).val() !== "numero-maquinas"){
+            $(this).removeClass("inputRojo");
+            $(".blanco2").removeClass("inputIncompleto");
+        }
+    });
+});
 function validarSolicitud() {
     $.ajax({
         url: "validarSolicitud.php",
@@ -226,11 +246,14 @@ function validarSolicitud() {
             }
         }
     });
+    Calcular();
 }
 function Calcular() {
     var cantidad = $("#select-numero option:selected").val();
+    var valorAPagar = $("#total").val();
     $param = {
-        cantidad: cantidad
+        cantidad: cantidad,
+        valor: valorAPagar
     };
     $.ajax({
         url: "validarCantidad.php",
@@ -241,16 +264,21 @@ function Calcular() {
                 $(".total").html("");
             } else if (response == "1.000") {
                 $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
+                $("#total").val(response);
             } else {
                 if (response == "2.000") {
                     $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
+                    $("#total").val(response);
                 } else if (response == "3.000") {
                     $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
+                    $("#total").val(response);
                 } else {
                     if (response == "4.000") {
                         $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
+                        $("#total").val(response);
                     } else if (response == "5.000") {
                         $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
+                        $("#total").val(response);
                     }
                 }
             }
@@ -281,11 +309,15 @@ function Editar(id) {
     var cedula = $("#" + id + "c").val();
     var numero = $("#" + id + "n").val();
     var direccion = $("#" + id + "D").val();
+    var empresa = $("#" + id + "E").val();
+    var rif = $("#" + id + "R").val();
     $("#nombre").val(nom);
     $("#correo").val(correo);
     $("#cedula").val(cedula);
     $("#numero").val(numero);
     $("#direccion").val(direccion);
+    $("#empresa").val(empresa);
+    $("#rif").val(rif);
 }
 function Edicion() {
     $.ajax({
@@ -297,7 +329,9 @@ function Edicion() {
             correo: $("#correo").val(),
             cedula: $("#cedula").val(),
             numero: $("#numero").val(),
-            direccion: $("#direccion").val()
+            direccion: $("#direccion").val(),
+            empresa: $("#empresa").val(),
+            rif: $("#rif").val()
         },
         success: function (data) {
             if (data == "Cambios realizados con éxito") {
@@ -318,6 +352,8 @@ function Aprobar(id) {
     var fecha = $("#" + id + "F").val();
     var estado = $("#" + id + "A").val();
     var comentario = $("#" + id + "D").val();
+    var cantidad = $("#" + id + "C").val();
+    var valor = $("#" + id + "V").val();
     $parametros = {
         id: id,
         nombre: nombre,
@@ -325,6 +361,8 @@ function Aprobar(id) {
         fecha: fecha,
         estado: estado,
         comentario: comentario,
+        cantidad: cantidad,
+        valor: valor,
         estado_aprobado: "si"
     };
     $.ajax({
@@ -340,6 +378,44 @@ function Aprobar(id) {
             }
         }
     });
+}
+function Negar(id){
+    var id = id;
+    var nombre = $("#" + id + "N").val();
+    var servicio = $("#" + id + "S").val();
+    var fecha = $("#" + id + "F").val();
+    var estado = $("#" + id + "A").val();
+    var comentario = $("#" + id + "D").val();
+    var maquinas = $("#" + id + "C").val();
+    var precio = $("#" + id + "V").val();
+    $parametros = {
+        id: id,
+        nombre: nombre,
+        servicio: servicio,
+        fecha: fecha,
+        estado: estado,
+        comentario: comentario,
+        maquinas: maquinas,
+        precio: precio
+    };
+    var c = confirm("¿Seguro de negar esta cita?");
+    if(c == true) {
+        $.ajax({
+            url: "Negar.php",
+            type: "POST",
+            data: $parametros,
+            success: function(response){
+                if (response == "La cita ha sido negada") {
+                    alert(response);
+                    self.location.reload();
+                } else {
+                    alert(response);
+                }
+            }
+        });
+    } else if(c == false) {
+           return false;
+    }
 }
 $.datepicker.regional['es'] = {
     closeText: 'Cerrar',
@@ -360,7 +436,7 @@ $.datepicker.regional['es'] = {
 };
 function noExcursion(date){
     var day = date.getDay();
-    return [(day != 5  && day != 6 && day != 0), ''];
+    return [(day != 0 && day != 5  && day != 6), ''];
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
@@ -368,3 +444,25 @@ $(function () {
         beforeShowDay: noExcursion
     });
 });
+function Eliminar(id, name){
+    $("#nom").html(name);
+    $("#nombreUsuario").val(id);
+}
+function EliminarUsuario(){
+    var id = $("#nombreUsuario").val();
+    var nombre = $("#nom").val();
+    $parametros = {
+        id: id,
+        nombre: nombre
+    };
+    $.ajax({
+        url: "Eliminar.php",
+        type: "POST",
+        data: $parametros,
+        success: function(resp){
+            alert("Usuario eliminado exitosamente");
+            self.location.reload();
+            return resp;
+        }
+    });
+}

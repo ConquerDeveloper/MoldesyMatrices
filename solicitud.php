@@ -62,12 +62,12 @@ if ($aprobado['aprobado'] == 'no'){
                         <div class="form-group">
                             <label for="">Servicio a solicitar:</label>
                             <select class="form-control" name="select-cita" id="select-cita">
-                                <option value="seleccione" onclick="esconderTextarea(),removerClases()">-Seleccione-
+                                <option value="seleccione">-Seleccione-
                                 </option>
-                                <option value="Mantenimiento Preventivo" onclick="esconderTextarea(),removerClases()"
+                                <option value="Mantenimiento Preventivo"
                                         id="mantenimientop">Mantenimiento Preventivo
                                 </option>
-                                <option value="Mantenimiento Correctivo" onclick="mostrarTextarea(),removerClases()"
+                                <option value="Mantenimiento Correctivo"
                                         id="mantenimientoc">Mantenimiento Correctivo
                                 </option>
                             </select>
@@ -77,19 +77,20 @@ if ($aprobado['aprobado'] == 'no'){
                             <label for="">Nº de máquinas a ser revisadas:</label>
                             <select class="form-control" name="select-numero" id="select-numero" onclick="Calcular()">
                                 <option value="numero-maquinas" id="numero-maquinas">-Seleccione-</option>
-                                <option value="1" id="uno" onclick="removerClases()">1</option>
-                                <option value="2" id="dos" onclick="removerClases()">2</option>
-                                <option value="3" id="tres" onclick="removerClases()">3</option>
-                                <option value="4" id="cuatro" onclick="removerClases()">4</option>
-                                <option value="5" id="cinco" onclick="removerClases()">5</option>
+                                <option value="1" id="uno">1</option>
+                                <option value="2" id="dos">2</option>
+                                <option value="3" id="tres">3</option>
+                                <option value="4" id="cuatro">4</option>
+                                <option value="5" id="cinco">5</option>
                             </select>
                             <span class="blanco2"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Fecha de la Cita:</label>
+
                             <div class="input-group">
-                                <input type="date" class="form-control" onclick="removerClases()"
-                                   onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
+                                <input type="text" class="form-control" onclick="removerClases()"
+                                       onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
                                 <span class="input-group-addon">
                                     <span class="fui-calendar"></span>
                                 </span>
@@ -111,6 +112,7 @@ if ($aprobado['aprobado'] == 'no'){
                                     Términos y Condiciones de la empresa</a>.
                             </p>
                             <span class="total"></span>
+                            <input type="hidden" value="" name="valor" id="total"/>
                         </div>
                         <button type="button" class="btn btn-danger btn-block" onclick="validarSolicitud()">Enviar
                         </button>
@@ -185,5 +187,10 @@ if ($aprobado['aprobado'] == 'no'){
 <script src="js/flat-ui.min.js"></script>
 <script src="jquery-ui/jquery-ui.js"></script>
 <script src="app.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#input-textarea").hide();
+    });
+</script>
 </body>
 </html>

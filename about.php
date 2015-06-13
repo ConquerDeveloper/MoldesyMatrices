@@ -14,6 +14,11 @@ $inicio->iniciarSesion();
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/flat-ui.min.css"/>
     <link rel="stylesheet" href="stylesheet.css"/>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 <body style="background: #ecf0f1">
 <?php include 'nav2.php'; ?>
@@ -29,12 +34,12 @@ $inicio->iniciarSesion();
 </div>
 
 <?php
-if(isset($_SESSION['id_usuario'])){
-?>
-<div class="container" id="<?php echo 'm&v?id=' . $_SESSION['id_usuario'];?>"></div>
+if (isset($_SESSION['id_usuario'])){
+    ?>
+    <div class="container" id="<?php echo 'm&v?id=' . $_SESSION['id_usuario'];?>"></div>
 <?php } else { ?>
 <div class="container" id="m&v">
-    <?php }?>
+    <?php } ?>
     <div class="row">
         <div class="col-md-6">
             <h4 class="text-center">
@@ -82,72 +87,81 @@ if(isset($_SESSION['id_usuario'])){
     ?>
     <div class="container" id="<?php echo 'servicios?id=' . $_SESSION['id_usuario'];?>">
         <?php } else { ?>
-    <div class="container" id="servicios">
-        <?php } ?>
-        <h4 class="text-center">
-            Servicios
-        </h4>
-        <div class="row">
-            <div class="col-md-6">
-                <h6 class="text-center panel-text">Mantenimiento Preventivo</h6>
-                <p class="text-center">
-                    <span class="fui-search font-big"></span>
-                </p>
-                <p class="texto-normal text-center">
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
-                </p>
-            </div>
-            <div class="col-md-6">
-                <h6 class="text-center panel-text">Mantenimiento Correctivo</h6>
-                <p class="text-center">
-                    <span class="fui-check font-big"></span>
-                </p>
-                <p class="texto-normal text-center">
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+        <div class="container" id="servicios">
+            <?php } ?>
+            <h4 class="text-center">
+                Servicios
+            </h4>
 
-    <?php
-    if(isset($_SESSION['id_usuario'])){
-    ?>
-<div class="container" id="<?php echo 'contacto?id=' . $_SESSION['id_usuario'];?>">
-    <?php } else {?>
-    <div class="container" id="contacto">
-    <?php }?>
-    <h4 class="text-center">Contáctanos</h4>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form action="">
-                        <div class="form-group">
-                            <label for="">Nombre:</label>
-                            <input type="text" class="form-control" placeholder="Escribe tu nombre" required="required"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Email:</label>
-                            <input type="email" class="form-control" placeholder="Escribe tu correo" required="required"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Comentario:</label>
-                            <textarea type="text" class="form-control" name="" id="" rows="4" required="required" placeholder="Escribe tu comentario..."></textarea>
-                        </div>
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-danger">Enviar</button>
-                        </div>
-                    </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="text-center panel-text">Mantenimiento Preventivo</h6>
+
+                    <p class="text-center">
+                        <span class="fui-search font-big"></span>
+                    </p>
+
+                    <p class="texto-normal text-center">
+                        Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-center panel-text">Mantenimiento Correctivo</h6>
+
+                    <p class="text-center">
+                        <span class="fui-check font-big"></span>
+                    </p>
+
+                    <p class="texto-normal text-center">
+                        Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php require_once('footer2.php');?>
-<script src="js/vendor/jquery.min.js"></script>
-<script src="js/flat-ui.min.js"></script>
-<script src="app.js"></script>
+    <?php
+    if (isset($_SESSION['id_usuario'])){
+    ?>
+    <div class="container" id="<?php echo 'contacto?id=' . $_SESSION['id_usuario'];?>">
+        <?php } else { ?>
+        <div class="container" id="contacto">
+            <?php } ?>
+            <h4 class="text-center">Contáctanos</h4>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form action="">
+                                <div class="form-group">
+                                    <label for="">Nombre:</label>
+                                    <input type="text" class="form-control" placeholder="Escribe tu nombre"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Escribe tu correo"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Comentario:</label>
+                                    <textarea type="text" class="form-control" name="" id="" rows="4"
+                                              required="required" placeholder="Escribe tu comentario..."></textarea>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-danger">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php require_once('footer2.php'); ?>
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/flat-ui.min.js"></script>
+        <script src="app.js"></script>
 </body>
 </html>
