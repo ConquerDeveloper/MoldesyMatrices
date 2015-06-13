@@ -78,7 +78,7 @@
                             Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
                             Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
                         </p>
-                        <a href="<?php echo 'prueba.php?id=' . $_SESSION['id_usuario'];?>" target="_blank" class="btn btn-danger btn-block">Descargar Planilla PDF</a>
+                        <a href="<?php echo 'pdf.php?id=' . $_SESSION['id_usuario'];?>" target="_blank" class="btn btn-danger btn-block">Descargar Planilla PDF</a>
                         <button class="btn btn-success btn-block" onclick="location.href='<?php echo 'inicio.php?id=' . $_SESSION['id_usuario'];?>'">Inicio</button>
                     </div>
                 </div>

@@ -4,10 +4,10 @@
             <div class="row">
                 <p>&copy; 2015 Moldes y Matrices</p>
                 <div style="float: right;">
-                    <a href="">Nosotros</a>
-                    <a href="">Misión y Visión</a>
-                    <a href="">Servicios</a>
-                    <a href="">Contacto</a>
+                    <a href="<?php echo 'about.php#m&v?id=' . $_SESSION['id_usuario'];?>">Nosotros</a>
+                    <a href="<?php echo 'about.php#m&v?id=' . $_SESSION['id_usuario'];?>">Misión y Visión</a>
+                    <a href="<?php echo 'about.php#servicios?id=' . $_SESSION['id_usuario'];?>">Servicios</a>
+                    <a href="<?php echo 'about.php#contacto?id=' . $_SESSION['id_usuario']; ?>">Contacto</a>
                 </div>
             </div>
         </div>

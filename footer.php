@@ -4,10 +4,10 @@
             <div class="row">
                 <p>&copy; 2015 Moldes y Matrices</p>
                 <div style="float: right;">
-                    <a href="">Nosotros</a>
-                    <a href="">Misión y Visión</a>
-                    <a href="">Servicios</a>
-                    <a href="">Contacto</a>
+                    <a href="about.php#m&v">Nosotros</a>
+                    <a href="about.php#m&v">Misión y Visión</a>
+                    <a href="about.php#servicios">Servicios</a>
+                    <a href="about.php#contacto">Contacto</a>
                 </div>
             </div>
         </div>

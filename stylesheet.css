@@ -137,14 +137,10 @@ a:focus {
 
 
 
-/*
-Fade content bs-carousel with hero headers
-Code snippet by maridlcrmn (Follow me on Twitter @maridlcrmn) for Bootsnipp.com
-Image credits: unsplash.com
-*/
+
 
 /********************************/
-/*       Fade Bs-carousel       */
+/*      Carrusel       */
 /********************************/
 .fade-carousel {
     position: relative;
@@ -166,7 +162,7 @@ Image credits: unsplash.com
 }
 
 /********************************/
-/*          Hero Headers        */
+/*          Cabecera        */
 /********************************/
 .hero {
     position: absolute;
@@ -344,38 +340,6 @@ Image credits: unsplash.com
 #btn-aprende {
     margin-right: 20px;
 }
-/*footer {
-    background: #444444;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-}
-.footer2 {
-    background: #fff;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-}
-footer .container {
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
-.footer2 .footer-texto {
-    color: #636363;
-    font-size: 12px;
-    display: inline-block;
-    margin-right: 30px;
-}
-.footer-texto {
-    color: #fff;
-    font-size: 12px;
-    display: inline-block;
-    margin-right: 30px;
-}
-.texto-derecha {
-    float: right;
-    cursor: pointer;
-}*/
 footer {
     padding: 30px;
     background: #444;
@@ -622,6 +586,48 @@ footer a {
 table th, table td {
     color: #363636;
 }
+table th {
+    font-size: 14px;
+}
+table td {
+    font-size: 13px;
+}
 #nav-admin {
     background: #444444;
+}
+#navbar-about {
+    background: #fff;
+    height:100px;
+}
+#navbar-about .navbar-brand {
+    color: #636363;
+    padding-top: 35px;
+    padding-left: 50px;
+}
+.navbar-default {
+    background: #fff;
+    margin-bottom: 0;
+    height: 100px;
+}
+
+.navbar-default .navbar-brand {
+    padding-top: 35px;
+    padding-left: 50px;
+    color: #636363;
+}
+
+.navbar-embossed {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.texto-normal {
+    font-size: 14px !important;
+}
+
+.url, .url:hover, .url:focus, .url:active {
+    color: #d64242;
+}
+.font-big {
+    font-size: 60px;
+    color: #3a3a3a;
 }

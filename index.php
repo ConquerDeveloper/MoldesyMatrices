@@ -43,7 +43,7 @@ if(isset($_SESSION['usuario'])){
                     <a class="page-scroll" href="#" data-toggle="modal" data-target="#modalRegistro">Regístrate</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#">Contacto</a>
+                    <a class="page-scroll" href="contacto.php">Contacto</a>
                 </li>
             </ul>
         </div>
@@ -68,18 +68,20 @@ if(isset($_SESSION['usuario'])){
             <div class="slide-1"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>Lorem Ipsum</h1>
+                    <h1>Moldes y Matrices C.A.</h1>
                     <h3>Lorem ipsum dolor sit amec.</h3>
                 </hgroup>
-                <button class="btn btn-hero btn-lg" data-toggle="modal" data-target="#modalRegistro" role="button">Empezar</button>
+                <button id="triggerModal" class="btn btn-hero btn-lg" data-toggle="modal" data-target="#modalRegistro" role="button">
+                    Empezar
+                </button>
             </div>
         </div>
         <div class="item slides">
             <div class="slide-2"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>Lorem Ipsum</h1>
-                    <h3>Lorem ipsum dolor sit amec.</h3>
+                    <h1>Nosotros nos ajustamos</h1>
+                    <h3>A su tiempo disponible.</h3>
                 </hgroup>
                 <button class="btn btn-hero btn-lg" role="button">Ver más</button>
             </div>
@@ -88,8 +90,8 @@ if(isset($_SESSION['usuario'])){
             <div class="slide-3"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>Lorem Ipsum</h1>
-                    <h3>Lorem ipsum dolor sit amec.</h3>
+                    <h1>Más de 20 años de experiencia</h1>
+                    <h3>en el mercado del plástico.</h3>
                 </hgroup>
                 <button class="btn btn-hero btn-lg" role="button">Ver más</button>
             </div>
@@ -106,9 +108,8 @@ if(isset($_SESSION['usuario'])){
                             <figure>
                                 <img src="img/icons/svg/map.svg" class="tile-image" alt="Retina">
                             </figure>
-                            <h3 class="tile-title">Lorem Ipsum Dolor</h3>
-                            <p class="text-center">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                                Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
+                            <h3 class="tile-title">Nos desplazamos a su empresa</h3>
+                            <p class="text-center">Con nuestra flota de técnicos, hacemos las reparaciones en tiempo récord, dirigiéndonos a su empresa bien sea a diagnosticar o reparar.</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -116,9 +117,8 @@ if(isset($_SESSION['usuario'])){
                             <figure>
                                 <img src="img/icons/svg/clocks.svg" class="tile-image" alt="Retina">
                             </figure>
-                            <h3 class="tile-title">Lorem Ipsum Dolor</h3>
-                            <p class="text-center">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                                Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec. </p>
+                            <h3 class="tile-title">Usted fija la fecha</h3>
+                            <p class="text-center">Utilizando la más avanzada tecnología y aprovechando el internet, le permitimos la fijación del día más oportuno y cómodo para la ejecución de nuestros servicios. </p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -126,9 +126,8 @@ if(isset($_SESSION['usuario'])){
                             <figure>
                                 <img src="img/icons/svg/compas.svg" class="tile-image" alt="Retina">
                             </figure>
-                            <h3 class="tile-title">Lorem Ipsum Dolor</h3>
-                            <p class="text-center">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                                Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec. </p>
+                            <h3 class="tile-title">Excelente ubicación</h3>
+                            <p class="text-center">Ubicados en la zona central del país, podemos atender a cualquier cliente en cualquier parte del país en tiempo récord utilizando la más avanzada tecnología. </p>
                         </div>
                     </div>
                 </div>
@@ -146,9 +145,9 @@ if(isset($_SESSION['usuario'])){
                 <img src="img/icons/svg/calendar.svg" class="img-responsive" alt="Calendar">
             </div>
             <div class="col-md-6">
-                <h3 class="text-center">Lorem Ipsum Dolor</h3>
-                <p class="text-justify">lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec </p>
-                <button class="btn btn-danger" href="javascript:void(0)" style="margin-left:40%;">Ver más</button>
+                <h3 class="text-center">Sistema de Solicitud de citas En Línea</h3>
+                <p class="text-justify">Seleccione una cita para servicio el día más cómodo para usted. Siempre que esté disponible el día, haremos lo mejor para realizar el servicio solicitado, sin esperas y en tiempo récord.</p>
+                <button class="btn btn-danger" href="javascript:void(0)" onclick="Scroll()" style="margin-left:40%;">Ver más</button>
             </div>
         </div>
     </div>
@@ -167,9 +166,9 @@ if(isset($_SESSION['usuario'])){
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h3 class="text-center">Lorem Ipsum Dolor</h3>
-                    <p class="text-justify">lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec </p>
-                    <button class="btn btn-danger" href="javascript:void(0)" style="margin-left:40%; margin-bottom:10%;">Ver más</button>
+                    <h3 class="text-center">Historial de Servicios</h3>
+                    <p class="text-justify">Puede disponer de un historial o bitácora de todos los servicios contratados con nosotros, y nuestro sistema le avisará cada cuanto tiempo debe solicitar el servicio de mantenimiento preventivo para las máquinas que ya han sido reparadas o diagnosticadas por nosotros. </p>
+                    <button class="btn btn-danger" href="javascript:void(0)" onclick="Scroll()" style="margin-left:40%; margin-bottom:10%;">Ver más</button>
                 </div>
                 <div class="col-md-6">
                     <img src="img/icons/svg/clipboard.svg" class="img-responsive" alt="Clipboard">
@@ -184,9 +183,9 @@ if(isset($_SESSION['usuario'])){
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2 id="seccion-titulo">Lorem ipsum dolor sit amec lorem ipsum dolor sit amec lorem ipsum dolor sit amec.</h2>
-                    <button class="btn btn-danger btn-lg" id="btn-aprende"><strong>Lorem ipsum</strong><br/>Dolor sit amec</button>
-                    <button class="btn btn-danger btn-lg" id="btn-aprende"><strong>Lorem ipsum</strong><br/>Dolor sit amec</button>
-                    <button class="btn btn-danger btn-lg" id="btn-aprende"><strong>Lorem ipsum</strong><br/>Dolor sit amec</button>
+                    <button class="btn btn-danger btn-lg" id="btn-aprende" onclick="Scroll()"><strong>Regístrate</strong><br/>Es rápido y fácil</button>
+                    <button class="btn btn-danger btn-lg" id="btn-aprende" onclick="location.href='about.php#m&v'"><strong>¿Quiénes Somos?</strong><br/>Una visión diferente</button>
+                    <button class="btn btn-danger btn-lg" id="btn-aprende" onclick="location.href='about.php#contacto'"><strong>Contáctanos</strong><br/>Empieza aquí</button>
                     <p class="text-center" style="margin-top:30px;color:#fff"><small>Lorem ipsum dolor sit amec sit amec.</small></p>
                 </div>
             </div>

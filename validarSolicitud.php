@@ -12,15 +12,15 @@ if ($cita == 'seleccione') {
 } else {
     if (strlen($fecha) == 0) {
         echo 'vacio3';
-    } elseif (str_replace("/", "-", $fecha) < date("Y-m-d") || str_replace("/", "-", $fecha) == date("Y-m-d")) {
+    } elseif (str_replace("/", "-", $fecha) < date("Y-m-d")) {
         echo 'invalido';
     } else {
-        if($cita == 'Mantenimiento Correctivo' && strlen($comentario) == 0){
+        if ($cita == 'Mantenimiento Correctivo' && strlen($comentario) == 0) {
             echo 'vacio4';
-        } elseif($cita == 'Mantenimiento Preventivo' && strlen($numero) > 0 && strlen($fecha) > 0){
+        } elseif ($cita == 'Mantenimiento Preventivo' && strlen($numero) > 0 && strlen($fecha) > 0) {
             echo 'listo';
         } else {
-            if($cita == 'Mantenimiento Correctivo' && strlen($numero) > 0 && strlen($fecha) > 0 && strlen($comentario) > 0){
+            if ($cita == 'Mantenimiento Correctivo' && strlen($numero) > 0 && strlen($fecha) > 0 && strlen($comentario) > 0) {
                 echo 'listo2';
             }
         }
