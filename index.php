@@ -43,7 +43,7 @@ if(isset($_SESSION['usuario'])){
                     <a class="page-scroll" href="#" data-toggle="modal" data-target="#modalRegistro">Regístrate</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="contacto.php">Contacto</a>
+                    <a class="page-scroll" href="about.php#contacto">Contacto</a>
                 </li>
             </ul>
         </div>

@@ -3,6 +3,7 @@ session_start();
 require_once('usuarios.php');
 $inicio = new Inicio('nombreInicio', 'passInicio');
 $inicio->iniciarSesion();
+$historial = new Historial;
 if(!isset($_SESSION['usuario'])){
     header('Location: index.php');
 } else {
@@ -20,98 +21,52 @@ if(!isset($_SESSION['usuario'])){
 </head>
 <body style="background:#ECF0F1">
 <?php require_once('nav.php');?>
-<?php
-$query_historial = "SELECT * FROM citas";
-$consulta = mysql_query($query_historial);
-while($resultado = mysql_fetch_array($consulta)){
-    $_SESSION['fecha-cita'] = $resultado['fecha'];
-    $_SESSION['tipo-servicio'] = $resultado['servicio'];
-    $_SESSION['comentario'] = $resultado['descripcion'];
-    $_SESSION['numero-maquinas'] = $resultado['cantidad'];
-}
-?>
+
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-success panel-verde">
-                <div class="panel-body">
-                    <h6 class="text-center panel-margen panel-fondo">
-                        Servicio Solicitado:
-                    </h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h5 class="text-center panel-text panel-margen  ">
-                        <?php echo $_SESSION['tipo-servicio'];?>
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-success panel-verde">
-                <div class="panel-body">
-                    <h6 class="text-center panel-fondo panel-margen">
-                        Nº de máquinas a ser revisadas:
-                    </h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h5 class="text-center panel-text panel-margen  ">
-                        <?php echo $_SESSION['numero-maquinas'];?>
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-success panel-verde">
-                <div class="panel-body">
-                    <h6 class="text-center panel-fondo panel-margen">
-                        Fecha de la cita:
-                    </h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h5 class="text-center panel-text panel-margen  ">
-                        <?php echo $_SESSION['fecha-cita'];?>
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-success panel-verde">
-                <div class="panel-body">
-                    <h6 class="text-center panel-fondo panel-margen">
-                        Comentarios:
-                    </h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h5 class="text-center panel-text panel-margen  ">
-                        <?php echo $_SESSION['comentario'];?>
-                    </h5>
-                </div>
-            </div>
+        <div class="col-md-12">
+            <?php
+            $historia = $historial->TraerHistorial();
+            for($i = 0; $i < sizeof($historia); $i ++){
+            ?>
+            <table class="table table-striped custab">
+                <thead>
+                <tr class="tabla-cabecera">
+                    <th class="text-center">Servicio</th>
+                    <th class="text-center">Fecha</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Valor</th>
+                    <th class="text-center">Reparación</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td class="text-center">
+                        <?php echo $historia[$i]['servicio'];?>
+                    </td>
+                    <td class="text-center">
+                        <?php echo $historia[$i]['fecha'];?>
+                    </td>
+                    <td class="text-center">
+                        <?php echo $historia[$i]['descripcion'];?>
+                    </td>
+                    <td class="text-center">
+                        <?php echo $historia[$i]['cantidad'];?>
+                    </td>
+                    <td class="text-center">
+                        <?php echo $historia[$i]['valor'];?>
+                    </td>
+                    <td class="text-center">
+                        <?php echo $historia[$i]['reparacion'];?>
+                    </td>
+                </tr>
+            </table>
+            <?php }?>
         </div>
     </div>
 </div>
+
+
 <?php }?>
 <?php require_once('footer2.php');?>
 <script src="js/vendor/jquery.min.js"></script>

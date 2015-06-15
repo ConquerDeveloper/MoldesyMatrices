@@ -62,9 +62,40 @@ class Registro
 
     public function EnviarCorreo()
     {
-        $asunto = 'Titulo';
-        $msg = 'Bienvenido';
-        mail($this->correo, $asunto, $msg);
+        $destinatario = $this->correo;
+        $asunto = "Bienvenido a Moldes y Matrices C.A.";
+        $cuerpo = '
+        <html>
+        <head>
+           <title>Bienvenido a Moldes y Matrices C.A.</title>
+        </head>
+        <body>
+        <font face="Open Sans, Helvetica, sans-serif">
+        <font color="#d64242"><h1>&iexcl;Bienvenido a Moldes y Matrices C.A.!</h1></font>
+        <font color="#636363">
+        <p>
+        <b>Estimado ' . ucfirst($this->nombre) . '</b>. Nos complace
+        recibirte como nuevo usuario en Moldes y Matrices. Aqu&iacute;, podr&aacute; solicitar las citas
+        para el servicio que requiera, as&iacute; como tambi&eacute;n ver un
+        historial completo de sus ordenes. Sin m&aacute;s que agregar, nos despedimos cordialmente.
+        </p>
+        </font>
+        </body>
+        </html>
+        ';
+
+//para el envío en formato HTML
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+
+//dirección del remitente
+        $headers .= "From: Daniel Da Costa <thedanielpsx@gmail.com>\r\n";
+
+//dirección de respuesta, si queremos que sea distinta que la del remitente
+        $headers .= "Reply-To: thedanielpsx@gmail.com\r\n";
+
+
+        mail($destinatario, $asunto, $cuerpo, $headers);
     }
 
     public function Redireccionar()
@@ -161,4 +192,51 @@ class Subir
     }
 }
 
+class Contacto
+{
+    public $nombreContacto;
+    public $email;
+    public $asunto;
+    public $comentario;
+
+    public function __construct($name, $mail, $subject, $text)
+    {
+        $this->nombreContacto = addslashes($_POST[$name]);
+        $this->email = addslashes($_POST[$mail]);
+        $this->asunto = addslashes($_POST[$subject]);
+        $this->comentario = addslashes($_POST[$text]);
+    }
+
+    public function EnviarEmailContacto()
+    {
+        if(isset($this->nombreContacto) && !empty($this->nombreContacto)
+        && isset($this->email) && !empty($this->email)
+        && isset($this->asunto) && !empty($this->asunto)){
+            $destinatario = 'thedanielpsx@gmail.com';
+            $asunto = $this->asunto;
+            $mensaje = 'Detalles del formulario de contacto \n';
+            $mensaje .= 'Nombre: ' . $this->nombreContacto . '\n';
+            $mensaje .= 'Correo:' . $this->email . '\n';
+            $mensaje .= 'Correo:' . $this->asunto . '\n';
+            $mensaje .= 'Correo:' . $this->comentario . '\n';
+            mail($destinatario,$asunto, $this->comentario);
+        } else {
+            echo 'Error al enviar el mensaje';
+            die();
+        }
+
+    }
+}
+class Historial
+{
+    public $historial = array();
+    public function TraerHistorial()
+    {
+        $sql = mysql_query("SELECT * FROM reparaciones WHERE id_usuario = '" . $_SESSION['id_usuario'] . "'");
+        while($row = mysql_fetch_array($sql)){
+            $this->historial[] = $row;
+        }
+        return $this->historial;
+    }
+}
 ?>

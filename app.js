@@ -436,7 +436,7 @@ function noExcursion(date) {
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#select-fecha, #busqueda").datepicker({
+    $("#select-fecha, #busqueda, #fechaModificable").datepicker({
         beforeShowDay: noExcursion
     });
 });

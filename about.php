@@ -133,20 +133,25 @@ if (isset($_SESSION['id_usuario'])){
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form action="">
+                            <form action="enviarmensaje.php" method="post">
                                 <div class="form-group">
                                     <label for="">Nombre:</label>
                                     <input type="text" class="form-control" placeholder="Escribe tu nombre"
-                                           required="required"/>
+                                           required="required" name="nombreContacto"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Email:</label>
-                                    <input type="email" class="form-control" placeholder="Escribe tu correo"
+                                    <input type="email" name="emailContacto" class="form-control" placeholder="Escribe tu correo"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Asunto:</label>
+                                    <input type="text" name="asuntoContacto" class="form-control" placeholder="Escribe el asunto del correo"
                                            required="required"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Comentario:</label>
-                                    <textarea type="text" class="form-control" name="" id="" rows="4"
+                                    <textarea name="textoContacto" class="form-control" rows="4"
                                               required="required" placeholder="Escribe tu comentario..."></textarea>
                                 </div>
                                 <div class="text-right">

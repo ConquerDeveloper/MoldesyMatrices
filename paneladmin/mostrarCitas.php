@@ -78,6 +78,7 @@ if(mysql_num_rows($q) > 0 || mysql_num_rows($q2) > 0){
                                 <th class="text-center">Nº de máquinas</th>
                                 <th class="text-center">Bs.F</th>
                                 <th class="text-center">Transferencia</th>
+                                <th class="text-center">Acción</th>
                             </tr>
                             </thead>
                             <?php
@@ -129,6 +130,38 @@ if(mysql_num_rows($q) > 0 || mysql_num_rows($q2) > 0){
                                         <a href="../<?php echo $admin->Imagen();?>" style="margin:0px auto" class="imagen" title="Transferencia Bancaria">
                                             <img src="../<?php echo $admin->Imagen();?>" class="img-responsive img-rounded" width="30" height="30" style="margin:0px auto"/>
                                         </a>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php
+                                        $query_ = mysql_query("SELECT * FROM reparaciones WHERE id_cita = '{$admi[$e]['id_cita']}'");
+                                        if(mysql_num_rows($query_) == 0) {
+                                        ?>
+                                        <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#modalReparacion"
+                                            onclick="var id='<?php echo $admi[$e]['id_cita']?>';Reparacion(id)">
+                                            Reparación
+                                        </button>
+                                        <?php } elseif(mysql_num_rows($query_) > 0) {?>
+                                            <button class="btn btn-xs btn-success disabled">
+                                                Reparación
+                                            </button>
+                                            <?php
+                                            $q = mysql_query("SELECT * FROM reparaciones WHERE id_cita = '{$admi[$e]['id_cita']}'");
+                                            while($row = mysql_fetch_array($q)){
+                                                $reparacion = $row['reparacion'];
+                                            }
+                                            ?>
+                                            <button class="btn btn-xs btn-info" onclick="var id = '<?php echo $admi[$e]['id_cita'];?>';
+                                                var nombre = '<?php echo $admi[$e]['nombre_usuario']; ?>';
+                                                var servicio = '<?php echo $admi[$e]['servicio']; ?>';
+                                                var fecha = '<?php echo $admi[$e]['fecha']; ?>';
+                                                var descripcion = '<?php echo $admi[$e]['descripcion']; ?>';
+                                                var cantidad = '<?php echo $admi[$e]['cantidad']; ?>';
+                                                var valor = '<?php echo $admi[$e]['valor']; ?>';
+                                                var reparacion = '<?php echo $reparacion; ?>';
+                                                verReparacion(id, nombre, servicio, fecha, descripcion, cantidad, valor, reparacion)" data-toggle="modal" data-target="#verReparacion">
+                                                Ver reparación
+                                            </button>
+                                        <?php }?>
                                     </td>
                                 </tr>
                             <?php
@@ -291,6 +324,83 @@ if(mysql_num_rows($q) > 0 || mysql_num_rows($q2) > 0){
         </div>
     </div>
 </div>
+
+
+
+    <!--Modal de ver Reparacion-->
+    <div class="modal fade" id="verReparacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Reparación realizada</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Nombre:</label>
+                        <input type="text" class="form-control" disabled="disabled" value="" id="nombreReparacion"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Servicio:</label>
+                        <input type="text" class="form-control" disabled="disabled" value="" id="servicioReparacion"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Fecha:</label>
+                        <input type="text" class="form-control" disabled="disabled" value="" id="fechaReparacion"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Comentario:</label>
+                        <input type="text" class="form-control" disabled="disabled" value="" id="comentarioReparacion"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">N° de máquinas:</label>
+                        <input type="text" class="form-control" disabled="disabled" value="" id="maquinasReparacion"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Precio:</label>
+                        <input type="text" class="form-control" disabled="disabled" value="" id="precioReparacion"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Reparacion:</label>
+                        <textarea  class="form-control" disabled="disabled" id="reparacion"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Modal de reparación de máquina-->
+    <div class="modal fade" id="modalReparacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title text-center" id="myModalLabel">Escribir Reparación</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Indique la reparación que realizada a la máquina:</label>
+                        <textarea name="comentarioReparacion" rows="4" placeholder="Escriba la reparacion" id="text-area-reparacion" class="form-control"></textarea>
+                        <input type="hidden" value="" id="reparacionHidden"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="Reparar()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 <?php } else { ?>
 <div class="container">
     <div class="row">
@@ -318,6 +428,39 @@ if(mysql_num_rows($q) > 0 || mysql_num_rows($q2) > 0){
         $("*#tablaAprobadas").hide();
     });
     $(".imagen").colorbox({rel:'imagen', width:'90%', height:'90%'});
+    function Reparacion(id){
+        $("#reparacionHidden").val(id);
+    }
+    function Reparar(){
+        var reparacion = $("#reparacionHidden").val();
+        var texto = $("#text-area-reparacion").val();
+        $params = {
+            reparacion: reparacion,
+            texto: texto
+        };
+        $.ajax({
+            url:"reparacion.php",
+            type: "POST",
+            data: $params,
+            success: function(response){
+                if(response == "La reparación se insertó exitosamente"){
+                    alert(response);
+                    self.location.reload();
+                } else {
+                    alert(response);
+                }
+            }
+        });
+    }
+    function verReparacion(id, nombre, servicio, fecha, descripcion, cantidad, valor, reparacion){
+        $("#nombreReparacion").val(nombre);
+        $("#servicioReparacion").val(servicio);
+        $("#fechaReparacion").val(fecha);
+        $("#comentarioReparacion").val(descripcion);
+        $("#maquinasReparacion").val(cantidad);
+        $("#precioReparacion").val(valor);
+        $("#reparacion").val(reparacion);
+    }
 </script>
 </body>
 </html>
