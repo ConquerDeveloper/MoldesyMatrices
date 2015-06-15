@@ -251,7 +251,7 @@ if(isset($_SESSION['usuario'])){
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="validarRegistro()" class="btn btn-danger btn-lg">Guardar</button>
+                <button type="button" onclick="validarRegistro()" class="btn btn-success btn-lg">Guardar</button>
                 </form>
             </div>
         </div>
@@ -283,7 +283,7 @@ if(isset($_SESSION['usuario'])){
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="validarInicio()"  class="btn btn-danger btn-lg">Entrar</button>
+                <button type="button" onclick="validarInicio()"  class="btn btn-success btn-lg">Entrar</button>
                 </form>
             </div>
         </div>

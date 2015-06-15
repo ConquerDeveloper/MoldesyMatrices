@@ -25,7 +25,7 @@
                 <div class="panel-body">
                     <img src="img/icons/svg/clocks.svg" alt="Watches" class="img-responsive" style="margin:0px auto">
                     <h2 class="text-center panel-text">
-                        No puedes solicitar otra cita.
+                        No puedes subir otra transferencia.
                     </h2>
                     <p class="text-center panel-text">
                         Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec

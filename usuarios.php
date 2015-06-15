@@ -149,7 +149,7 @@ class Subir
                     return false;
                 } else {
                     move_uploaded_file($_FILES[$this->archivoSubido]['tmp_name'], $directorio_objetivo);
-                    $query_image = "INSERT INTO imagenes (nombre_imagen,imagen) VALUES('$archivo','$directorio_objetivo')";
+                    $query_image = "INSERT INTO imagenes VALUES('NULL','$archivo','$directorio_objetivo','{$_GET['id']}')";
                     mysql_query($query_image);
                     include 'vista-subido.php';
                 }

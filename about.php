@@ -20,7 +20,7 @@ $inicio->iniciarSesion();
         }
     </style>
 </head>
-<body style="background: #ecf0f1">
+<body style="background: #ECF0F1">
 <?php include 'nav2.php'; ?>
 <div class="jumbotron" style="background: #fff;">
     <div class="container">

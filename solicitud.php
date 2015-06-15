@@ -26,7 +26,7 @@ if ($aprobado['aprobado'] == 'no'){
     <link rel="stylesheet" href="css/flat-ui.min.css"/>
     <link rel="stylesheet" href="stylesheet.css"/>
 </head>
-<body style="background:#e1e1e1">
+<body style="background:#ECF0F1">
 <?php require_once('nav.php'); ?>
 
 <div class="container">
@@ -144,7 +144,7 @@ if ($aprobado['aprobado'] == 'no'){
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Entiendo</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Entiendo</button>
             </div>
         </div>
     </div>
@@ -171,7 +171,7 @@ if ($aprobado['aprobado'] == 'no'){
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Entiendo</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Entiendo</button>
             </div>
         </div>
     </div>

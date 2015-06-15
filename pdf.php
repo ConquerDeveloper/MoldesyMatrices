@@ -29,7 +29,7 @@ $pdf = new Pdf('P', 'pt', 'Letter');
 $pdf->AddPage();
 $pdf->Cell(0, 50, '', 0, 1);
 $pdf->SetFont('Arial', 'B', 20);
-$pdf->Cell(0, 100, 'Estimado ' . ucfirst($_SESSION['usuario']) . '.', 0, 1, 'C');
+$pdf->Cell(0, 100, 'Estimado/a ' . ucfirst($_SESSION['usuario']) . '.', 0, 1, 'C');
 $pdf->SetFont('Arial', '', 14);
 $pdf->Cell(0, 30, utf8_decode('Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec'), 0, 1, 'L');
 $pdf->Cell(0, 30, utf8_decode('lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec'), 0, 1, 'L');

@@ -10,7 +10,7 @@ function Scroll() {
     $("html,body").animate({
         scrollTop: 0
     }, "slow");
-    setTimeout(function(){
+    setTimeout(function () {
         $("#triggerModal").trigger("click");
     }, 500);
 }
@@ -179,19 +179,19 @@ $("#modalClausulas").modal({
     show: true
 });
 $(function () {
-    $("#select-cita").change(function(){
-        if($(this).val() == "Mantenimiento Correctivo"){
+    $("#select-cita").change(function () {
+        if ($(this).val() == "Mantenimiento Correctivo") {
             $("#input-textarea").slideToggle();
-        } else if($(this).val() == "Mantenimiento Preventivo"){
+        } else if ($(this).val() == "Mantenimiento Preventivo") {
             $("#input-textarea").hide("slow");
         }
-        if($(this).val() !== "seleccione"){
+        if ($(this).val() !== "seleccione") {
             $(this).removeClass("inputRojo");
             $(".blanco1").removeClass("inputIncompleto");
         }
     });
-    $("#select-numero").change(function(){
-        if($(this).val() !== "numero-maquinas"){
+    $("#select-numero").change(function () {
+        if ($(this).val() !== "numero-maquinas") {
             $(this).removeClass("inputRojo");
             $(".blanco2").removeClass("inputIncompleto");
         }
@@ -225,19 +225,19 @@ function validarSolicitud() {
                         $("#textarea-comentario").addClass("inputRojo");
                         $(".blanco4").addClass("inputIncompleto");
                         return false;
-                    } else if(response == "listo"){
+                    } else if (response == "listo") {
                         var c = confirm("¿Está seguro de los datos ingresados?");
-                        if(c == true){
+                        if (c == true) {
                             $("#formularioClausulas").submit();
-                        } else if(c == false){
+                        } else if (c == false) {
                             return false;
                         }
                     } else {
-                        if(response == "listo2"){
+                        if (response == "listo2") {
                             var c2 = confirm("¿Está seguro de los datos ingresados?");
-                            if(c2 == true){
+                            if (c2 == true) {
                                 $("#formularioClausulas").submit();
-                            } else if(c2 == false){
+                            } else if (c2 == false) {
                                 return false;
                             }
                         }
@@ -338,9 +338,7 @@ function Edicion() {
                 alert(data);
                 self.location.reload();
             } else {
-                if (data == "E-mail en uso") {
-                    alert(data);
-                }
+                alert(data);
             }
         }
     });
@@ -354,6 +352,7 @@ function Aprobar(id) {
     var comentario = $("#" + id + "D").val();
     var cantidad = $("#" + id + "C").val();
     var valor = $("#" + id + "V").val();
+    var transferencia = $("#" + id + "IMG").val();
     $parametros = {
         id: id,
         nombre: nombre,
@@ -363,6 +362,7 @@ function Aprobar(id) {
         comentario: comentario,
         cantidad: cantidad,
         valor: valor,
+        transferencia: transferencia,
         estado_aprobado: "si"
     };
     $.ajax({
@@ -379,7 +379,7 @@ function Aprobar(id) {
         }
     });
 }
-function Negar(id){
+function Negar(id) {
     var id = id;
     var nombre = $("#" + id + "N").val();
     var servicio = $("#" + id + "S").val();
@@ -398,24 +398,20 @@ function Negar(id){
         maquinas: maquinas,
         precio: precio
     };
-    var c = confirm("¿Seguro de negar esta cita?");
-    if(c == true) {
-        $.ajax({
-            url: "Negar.php",
-            type: "POST",
-            data: $parametros,
-            success: function(response){
-                if (response == "La cita ha sido negada") {
-                    alert(response);
-                    self.location.reload();
-                } else {
-                    alert(response);
-                }
+    $.ajax({
+        url: "Negar.php",
+        type: "POST",
+        data: $parametros,
+        success: function (response) {
+            if (response == "La cita ha sido negada con éxito") {
+                alert(response);
+                self.location.reload();
+            } else {
+                alert(response);
             }
-        });
-    } else if(c == false) {
-           return false;
-    }
+        }
+    });
+
 }
 $.datepicker.regional['es'] = {
     closeText: 'Cerrar',
@@ -428,27 +424,27 @@ $.datepicker.regional['es'] = {
     dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
     dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
     weekHeader: 'Sm',
-    dateFormat: 'yy/mm/dd',
+    dateFormat: 'yy-mm-dd',
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
     yearSuffix: ''
 };
-function noExcursion(date){
+function noExcursion(date) {
     var day = date.getDay();
-    return [(day != 0 && day != 5  && day != 6), ''];
+    return [(day != 0 && day != 5 && day != 6), ''];
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#select-fecha").datepicker({
+    $("#select-fecha, #busqueda").datepicker({
         beforeShowDay: noExcursion
     });
 });
-function Eliminar(id, name){
+function Eliminar(id, name) {
     $("#nom").html(name);
     $("#nombreUsuario").val(id);
 }
-function EliminarUsuario(){
+function EliminarUsuario() {
     var id = $("#nombreUsuario").val();
     var nombre = $("#nom").val();
     $parametros = {
@@ -459,10 +455,123 @@ function EliminarUsuario(){
         url: "Eliminar.php",
         type: "POST",
         data: $parametros,
-        success: function(resp){
+        success: function (resp) {
             alert("Usuario eliminado exitosamente");
             self.location.reload();
             return resp;
+        }
+    });
+}
+$(function () {
+    $("#esconderBtn").click(function () {
+        $("*#tablaAprobadas").hide('slow');
+    });
+    $("#mostrarBtn").click(function () {
+        $("*#tablaAprobadas").show('slow');
+    });
+});
+function EditarFecha(fecha, id) {
+    $("#fechaModificable").val(fecha);
+    $("#fechaEscondida").val(id);
+}
+function EdicionFecha() {
+    var fecha = $("#fechaModificable").val();
+    var id = $("#fechaEscondida").val();
+    $params = {
+        fecha: fecha,
+        id: id
+    };
+    $.ajax({
+        url: "editarFecha.php",
+        type: "POST",
+        data: $params,
+        success: function (response) {
+            if (response == "La fecha de la cita ha sido modificada exitosamente") {
+                alert(response);
+                self.location.reload();
+            } else {
+                alert(response);
+            }
+        }
+    });
+}
+$(function () {
+    $("#btnCrearAdmin").on("click", function () {
+        $parametros = {
+            nombre: $("#nombreAdmin").val(),
+            contra: $("#contraAdmin").val(),
+            tipo: $("#tipoAdmin option:selected").val()
+        };
+        $.ajax({
+            url: "crearAdmin.php",
+            type: "POST",
+            data: $parametros,
+            success: function (response) {
+                if (response == "Ha creado un nuevo administrador exitosamente") {
+                    alert(response);
+                    self.location.reload();
+                } else if (response == "Error") {
+                    alert(response);
+                }
+            }
+        });
+    });
+});
+function EditarAdmin(id) {
+    var id = id;
+    var nombre = $("#" + id + "N").val();
+    var clave = $("#" + id + "C").val();
+    var tipo = $("#" + id + "T").val();
+    $("#nombreModificable").val(nombre);
+    $("#claveModificable").val(clave);
+    $("#tipoModificable").val(tipo);
+    $("#inputOculto").val(id);
+}
+function EdicionAdmin() {
+    var id = $("#inputOculto").val();
+    var nombre = $("#nombreModificable").val();
+    var clave = $("#claveModificable").val();
+    var tipo = $("#tipoModificable").val();
+    $params = {
+        id: id,
+        nombre: nombre,
+        clave: clave,
+        tipo: tipo
+    };
+    $.ajax({
+        url: "editarAdmins.php",
+        type: "POST",
+        data: $params,
+        success: function (response) {
+            if (response == "Los datos fueron modificados con éxito") {
+                alert(response);
+                self.location.reload();
+            } else {
+                alert(response);
+            }
+        }
+    });
+}
+function EliminarAdmin(id, nombre) {
+    $(".nombreAdmin").html(nombre);
+    $("#Oculto").val(id);
+}
+function EliminacionAdmin() {
+    var id = $("#Oculto").val();
+    $param = {
+        id: id
+    };
+    $.ajax({
+        url: "eliminarAdmin.php",
+        type: "POST",
+        data: $param,
+        success: function (response) {
+            if (response == "El usuario ha sido eliminado con éxito") {
+                alert(response);
+                self.location.reload();
+            } else {
+                alert(response);
+            }
         }
     });
 }
