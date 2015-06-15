@@ -26,42 +26,58 @@ if(!isset($_SESSION['usuario'])){
     <div class="row">
         <div class="col-md-12">
             <?php
-            $historia = $historial->TraerHistorial();
-            for($i = 0; $i < sizeof($historia); $i ++){
+            $q = mysql_query("SELECT * FROM reparaciones WHERE id_usuario = '{$_SESSION['id_usuario']}'");
+            if(mysql_num_rows($q) > 0) {
+                ?>
+                <?php
+                $historia = $historial->TraerHistorial();
+                for ($i = 0; $i < sizeof($historia); $i++) {
+                    ?>
+                    <table class="table table-striped custab">
+                        <thead>
+                        <tr class="tabla-cabecera">
+                            <th class="text-center">Servicio</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">Bs.F.</th>
+                            <th class="text-center">Reparación</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td class="text-center">
+                                <?php echo $historia[$i]['servicio'];?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $historia[$i]['fecha'];?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $historia[$i]['descripcion'];?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $historia[$i]['cantidad'];?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $historia[$i]['valor'];?>
+                            </td>
+                            <td class="text-center">
+                                <?php echo $historia[$i]['reparacion'];?>
+                            </td>
+                        </tr>
+                    </table>
+                <?php }
+            } elseif(mysql_num_rows($q) == 0) {
             ?>
-            <table class="table table-striped custab">
-                <thead>
-                <tr class="tabla-cabecera">
-                    <th class="text-center">Servicio</th>
-                    <th class="text-center">Fecha</th>
-                    <th class="text-center">Descripción</th>
-                    <th class="text-center">Cantidad</th>
-                    <th class="text-center">Valor</th>
-                    <th class="text-center">Reparación</th>
-                </tr>
-                </thead>
-                <tr>
-                    <td class="text-center">
-                        <?php echo $historia[$i]['servicio'];?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo $historia[$i]['fecha'];?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo $historia[$i]['descripcion'];?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo $historia[$i]['cantidad'];?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo $historia[$i]['valor'];?>
-                    </td>
-                    <td class="text-center">
-                        <?php echo $historia[$i]['reparacion'];?>
-                    </td>
-                </tr>
-            </table>
-            <?php }?>
+                <div class="jumbotron" style="background: #BDC3C7;">
+                    <div class="container">
+                        <h4 class="text-center" style="margin:0">
+                            Aún no tienes citas aprobadas
+                        </h4>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>
