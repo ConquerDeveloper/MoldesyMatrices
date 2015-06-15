@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/flat-ui.min.css"/>
     <link rel="stylesheet" href="../stylesheet.css"/>
 </head>
-<body style="background:#e1e1e1">
+<body style="background:#ECF0F1">
     <?php require_once('navadmin.php');?>
 
     <div class="container">

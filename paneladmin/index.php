@@ -9,33 +9,38 @@
     <link rel="stylesheet" href="../css/flat-ui.min.css"/>
     <link rel="stylesheet" href="../stylesheet.css"/>
 </head>
-<body>
+<body style="background: #ECF0F1">
 <?php include('navadmin.php') ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <h4 class="text-center">Sistema de Administración Moldes y Matrices C.A.</h4>
-            <hr/>
+            <hr class="separacion-admin"/>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-push-3">
-            <form action="iniciado.php" method="post" name="formAdmin" id="formAdmin">
-                <div class="form-group">
-                    <label for="">Admin:</label>
-                    <input type="text"  name="nombreAdmin" class="form-control" required="required" id="nombre-admin"/>
-                    <span class="empty1"></span>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="iniciado.php" method="post" name="formAdmin" id="formAdmin">
+                        <div class="form-group">
+                            <label for="">Admin:</label>
+                            <input type="text" name="nombreAdmin" class="form-control" required="required"
+                                   id="nombre-admin"/>
+                            <span class="empty1"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Contraseña:</label>
+                            <input type="password" name="contraAdmin" class="form-control" required="required"
+                                   id="contra-admin"/>
+                            <span class="empty2"></span>
+                        </div>
+                        <button class="btn btn-danger btn-block" type="submit">Entrar</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="">Contraseña:</label>
-                    <input type="password"  name="contraAdmin" class="form-control" required="required"
-                           id="contra-admin"/>
-                    <span class="empty2"></span>
-                </div>
-                <button class="btn btn-danger btn-block" type="submit">Entrar</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>

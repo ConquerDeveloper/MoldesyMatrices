@@ -17,10 +17,9 @@ while($row = mysql_fetch_array($q2)){
     $cantidad = $row['cantidad'];
     $direccion = $row['direccion'];
     $numero = $row['numero'];
-    $sql = mysql_query("INSERT INTO negadas VALUES('NULL','$id_cita','$id','$servicio','$fecha','$comentario','$nombre','$cedula','$rif','$cantidad','$direccion','$numero','$precio')");
+    $sql = mysql_query("DELETE FROM citas WHERE id_usuario = '" . $id . "'");
     if($sql){
-        mysql_query("DELETE FROM citas WHERE id_usuario = '" . $id . "'");
-        echo 'La cita ha sido negada' . $precio;
+        echo 'La cita ha sido negada con éxito';
     } else {
         echo 'Error';
     }

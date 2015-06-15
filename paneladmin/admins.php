@@ -5,11 +5,13 @@ class Administradores
 {
     public $admin;
     public $pass;
+    public $permisos;
     public $usuario = array();
     public $citas = array();
     public $negadas = array();
     public $aprobadas = array();
     public $servicio;
+    public $imagen;
 
     public function Post($nombre_admin, $contra_admin)
     {
@@ -20,8 +22,9 @@ class Administradores
     public function Sesion()
     {
         if (isset($this->admin) && !empty($this->admin) && isset($this->pass) && !empty($this->pass)) {
-            $_query_ = mysql_query("SELECT nombre_admin, contra_admin FROM admins WHERE nombre_admin = '" . $this->admin . "'");
+            $_query_ = mysql_query("SELECT * FROM admins WHERE nombre_admin = '" . $this->admin . "'");
             while ($row = mysql_fetch_array($_query_)) {
+                $_SESSION['id'] = $row['id_admin'];
                 $_SESSION['admin'] = $row['nombre_admin'];
             }
         }
@@ -60,15 +63,6 @@ class Administradores
         return $this->aprobadas;
     }
 
-    public function TraerNegadas($id)
-    {
-        $sql2 = mysql_query("SELECT * FROM negadas WHERE id_usuario = '" . $id . "'");
-        while ($row = mysql_fetch_array($sql2)) {
-            $this->negadas[] = $row;
-        }
-        return $this->negadas;
-    }
-
     public function ValidarAdmins()
     {
         $_q_ = "SELECT * FROM admins
@@ -79,8 +73,35 @@ class Administradores
         if (mysql_num_rows($q_) == 0) {
             include 'vista-formulario-error.php';
         } else {
-            header('Location: inicio.php');
+            header('Location: inicio.php?id=' . $_SESSION['id']);
         }
 
+    }
+
+    public function Imagen()
+    {
+        $sql = mysql_query("SELECT * FROM imagenes WHERE id_usuario = '{$_GET['id']}'");
+        while ($row = mysql_fetch_array($sql)) {
+            $this->imagen = $row['imagen'];
+        }
+        return $this->imagen;
+    }
+
+    public function TraerAdmins()
+    {
+        $sql = mysql_query("SELECT * FROM admins");
+        while ($row = mysql_fetch_array($sql)) {
+            $this->usuario[] = $row;
+        }
+        return $this->usuario;
+    }
+
+    public function Permisos($data)
+    {
+        $sql = mysql_query("SELECT * FROM admins WHERE id_admin = '{$_GET['id']}'");
+        while($row = mysql_fetch_array($sql)){
+            $this->permisos = $row[$data];
+        }
+        return $this->permisos;
     }
 }
