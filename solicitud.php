@@ -34,23 +34,23 @@ if ($aprobado['aprobado'] == 'no'){
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="text-center panel-text">Lorem Ipsum Dolor</h6>
+                    <h6 class="text-center panel-text">Servicios a contratar</h6>
 
-                    <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
+                    <p class="text-justify">¿Preventivo? ¿Correctivo? Elija el servicio que necesita que realicemos.</p>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="text-center panel-text">Lorem Ipsum Dolor</h6>
+                    <h6 class="text-center panel-text">Cantidad de máquinas</h6>
 
-                    <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
+                    <p class="text-justify">¿Cuántas máquinas necesita revisar/reparar?</p>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="text-center panel-text">Lorem Ipsum Dolor</h6>
+                    <h6 class="text-center panel-text">Fecha de la cita</h6>
 
-                    <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.</p>
+                    <p class="text-justify">Elija la fecha que más se adecúe a su necesidad.</p>
                 </div>
             </div>
         </div>
@@ -136,12 +136,15 @@ if ($aprobado['aprobado'] == 'no'){
             </div>
             <div class="modal-body">
                 <p class="modal-texto text-justify">
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor
-                    sit amec
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor
-                    sit amec
-                    Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
+                    <strong>Al hacer clic en el botón "Entiendo", está aceptando los siguientes términos y condiciones: </strong>A partir de este momento, la empresa Moldes y Matrices 2014, C.A, la cual será conocida como "La empresa", y el usuario, quien será conocido como "Cliente".
                 </p>
+                <ol class="modal-texto">
+                    <li>El cliente debe realizar un pago correspondiente a Bs.F 1.000.00 por cada máquina a la cual desea realizar bien sea Mantenimiento Preventivo (o revisión) o Mantenimiento Correctivo (reparación de fallas), así se cubrirá el gasto que genera la movilización del Personal Técnico a las instalaciones de la empresa del Cliente</li>
+                    <li>La empresa sólo manejará 5 mantenimientos de un solo tipo por día sin excepción, de esta forma se puede garantizar un servicio eficaz para todos los clientes. 2.1. En caso de que se presente un fallo de una máquina que no esté contemplada en la orden de servicio mientras los técnicos estén en la empresa del cliente; quedará al juicio del técnico si efectúa o no la reparación debido a que el técnico tiene un horario estricto para la resolución de casos diarios, de ser afirmativa la reparación, el monto  de revisión de Bs.F 1.000.00 será cargado a la factura final que le hará llegar la parte administrativa de la empresa.</li>
+                    <li>La empresa se reserva el derecho de manejar sólo cuatro (4) días de la semana para prestar los servicios: Lunes, Martes, Miércoles y Jueves, quedando así Viernes y Sábados como días inutilizados para la revisión de máquinas</li>
+                    <li>Debido a la situación actual del país, el cliente deberá adquirir los repuestos que  necesiten cualquiera de las máquinas que hayan revisado los técnicos de la empresa, y la instalación/adaptación/configuración de dicho repuesto se realizará el día viernes o sábado siguiente próximo a la fecha de cita que solicitó el cliente.</li>
+                    <li>En el caso de que los técnicos de la empresa no puedan acceder al sitio/edificio/galpón, por cualquier causa que sea imputable al cliente, la empresa sólo hará un intento de realizar el servicio solicitado por el cliente , la empresa seleccionará el día viernes siguiente próximo a la fecha de la cita que el cliente solicitó, de repetirse la situación el día en el que los técnicos intenten realizar el segundo intento, el cliente perderá de forma definitiva la cita de servicios contratados, lo que acarrea que el monto transferido al momento de realizar la solicitud de la cita de servicio se utilice para cubrir los gastos de movilización de los técnicos de la empresa.</li>
+                </ol>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Entiendo</button>

@@ -7,11 +7,8 @@ if (!isset($_SESSION['usuario'])) {
     header('Location: index.php');
 } else {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM imagenes WHERE id_usuario = '$id'";
-    $variable = mysql_query($sql);
-    if (mysql_num_rows($variable) == 1) {
-        include 'vista-no-subir.php';
-    } else {
+    $sql = mysql_query("SELECT * FROM imagenes WHERE id_usuario = '$id'");
+    if(mysql_num_rows($sql) == 0){
         ?>
         <!DOCTYPE html>
         <html>
@@ -31,13 +28,11 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <h3 class="text-center panel-text">Lore Ipsum Dolor</h3>
-
+                            <h3 class="text-center panel-text">Subir transferencias</h3>
                             <p class="text-justify panel-text">
-                                Lorem ipsum dolor sit amecLorem ipsum dolor sit amecLorem ipsum dolor sit amec
-                                Lorem ipsum dolor sit amecLorem ipsum dolor sit amecLorem ipsum dolor sit amec
-                                Lorem ipsum dolor sit amec.
+                                Para la aprobación de la cita, debe adjuntar un scaneo, foto o versión digital del comprobante de pago (recuerde que sólo trabajamos con transferencias electrónicas y depósitos bancarios). El formato del archivo debe ser "JPG", "JPEG", "PNG", "XPS", "OXPS", "PDF".
                             </p>
+                            <p class="text-justify panel-text">Es necesario y sin excepciones, el adjuntar el archivo de pago ya que esto es lo que garantiza que el persona técnico realice la visita</p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +66,11 @@ if (!isset($_SESSION['usuario'])) {
 
         </div>
 
-        <?php require_once('footer2.php'); ?>
+        <?php require_once('footer2.php');
+    } elseif(mysql_num_rows($sql) > 0) {
+        include 'vista-no-subir.php';
+    }
+        ?>
 
         <script src="js/vendor/jquery.min.js"></script>
         <script src="js/flat-ui.min.js"></script>
@@ -80,4 +79,3 @@ if (!isset($_SESSION['usuario'])) {
         </html>
     <?php
     }
-}

@@ -17,9 +17,25 @@ $query = mysql_query("UPDATE usuarios SET
                       direccion = '" . $direccion . "',
                       empresa_usuario = '" . $empresa . "',
                       rif_usuario = '" . $rif . "' WHERE id_usuario = '" . $id . "'");
-if($query){
+$query2 = mysql_query("UPDATE reparaciones SET
+                      nombre_usuario = '" . $nombre . "' WHERE id_usuario = '" . $id . "'");
+$query3 = mysql_query("UPDATE citas SET
+                      nombre_usuario = '" . $nombre . "',
+                      cedula_usuario = '" . $cedula . "',
+                      numero = '" . $numero . "',
+                      direccion = '" . $direccion . "',
+                      rif_usuario = '" . $rif . "' WHERE id_usuario = '" . $id . "'");
+$query4 = mysql_query("UPDATE aprobadas SET
+                      nombre_usuario = '" . $nombre . "',
+                      cedula_usuario = '" . $cedula . "',
+                      numero = '" . $numero . "',
+                      direccion = '" . $direccion . "',
+                      rif_usuario = '" . $rif . "' WHERE id_usuario = '" . $id . "'");
+
+$query5 = mysql_query("INSERT INTO usuario_editado values('null', '$nombre', '$correo', 'Sin modificar','Sin modificar', '$cedula', '$empresa', '$rif', '$direccion', '$numero', now(), now())");
+if($query && $query2 && $query3 && $query4 && $query5){
     echo 'Cambios realizados con éxito';
 } else {
-    echo 'error';
+    echo "error";
 }
 

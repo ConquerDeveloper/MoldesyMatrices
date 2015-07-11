@@ -13,10 +13,10 @@ while($row = mysql_fetch_array($sql)){
     $valor = $row['valor'];
 }
 $sql2 = mysql_query("INSERT INTO reparaciones VALUES('{$reparacion}', '{$id}','{$nombre}','{$servicio}','{$fecha}','{$descripcion}','$cantidad','{$valor}','{$texto}','NULL')");
-if($sql2){
+$sql3 = mysql_query("INSERT INTO reparacion_historial VALUES('NULL','{$reparacion}','{$id}','{$nombre}','{$servicio}', '{$fecha}','{$descripcion}','{$cantidad}','{$valor}','{$texto}',now(),now())");
+if($sql2 && $sql3){
     echo 'La reparación se insertó exitosamente';
 } else {
     echo 'Error';
 }
-
 ?>

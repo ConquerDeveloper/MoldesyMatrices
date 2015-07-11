@@ -436,7 +436,7 @@ function noExcursion(date) {
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#select-fecha, #busqueda, #fechaModificable").datepicker({
+    $("#select-fecha,#fechaModificable").datepicker({
         beforeShowDay: noExcursion
     });
 });
@@ -498,6 +498,7 @@ function EdicionFecha() {
 $(function () {
     $("#btnCrearAdmin").on("click", function () {
         $parametros = {
+            id: $("#idAdmin").val(),
             nombre: $("#nombreAdmin").val(),
             contra: $("#contraAdmin").val(),
             tipo: $("#tipoAdmin option:selected").val()

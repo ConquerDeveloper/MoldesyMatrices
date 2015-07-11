@@ -1,3 +1,12 @@
+<?php
+session_start();
+require_once('admins.php');
+$admin = new Administradores;
+$admin->Sesion();
+if(isset($_SESSION['admin'])){
+    header('Location: inicio.php?id= ' . $_SESSION['id']);
+} else {
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +53,7 @@
         </div>
     </div>
 </div>
-
+<?php }?>
 
 <script src="../js/vendor/jquery.min.js"></script>
 <script src="../js/flat-ui.min.js"></script>

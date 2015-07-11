@@ -75,8 +75,7 @@
                             ¡Su cita fue solicitada con éxito!
                         </h2>
                         <p class="text-center panel-text">
-                            Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.
+                            ¡Gracias por solicitar nuestros servicios! El próximo paso será realizar el pago. Descargue el documento PDF con la información de su cita y consérvelo
                         </p>
                         <a href="<?php echo 'pdf.php?id=' . $_SESSION['id_usuario'];?>" target="_blank" class="btn btn-danger btn-block">Descargar Planilla PDF</a>
                         <button class="btn btn-success btn-block" onclick="location.href='<?php echo 'inicio.php?id=' . $_SESSION['id_usuario'];?>'">Inicio</button>

@@ -4,6 +4,9 @@ require_once('admins.php');
 $admin = new Administradores;
 $admin->Sesion();
 $permisos = $admin->Permisos('permisos');
+if(!isset($_SESSION['admin'])){
+    header('Location: index.php');
+} else {
 if($permisos == 1){
 ?>
 <!DOCTYPE html>
@@ -41,6 +44,7 @@ require_once('nav2.php');
                 <tr class="tabla-cabecera">
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Clave</th>
+                    <th class="text-center">Permiso</th>
                     <th class="text-center">Tipo</th>
                     <th class="text-center">Acción</th>
                 </tr>
@@ -65,6 +69,11 @@ require_once('nav2.php');
                                    value="<?php echo $Admins[$i]['contra_admin']?>"/>
                         </td>
                         <td class="text-center">
+                            <?php echo $Admins[$i]['permisos']; ?>
+                            <input type="hidden" id="<?php echo $Admins[$i]['permisos'];?>P"
+                                   value="<?php echo $Admins[$i]['permisos']?>"/>
+                        </td>
+                        <td class="text-center">
                             <?php if($Admins[$i]['permisos'] == 1){?>
                             Master
                             <input type="hidden" id="<?php echo $Admins[$i]['id_admin'];?>T"
@@ -77,7 +86,7 @@ require_once('nav2.php');
                         </td>
                         <td class="text-center">
                             <a class='btn btn-success btn-xs' href="javascript:void(0)" data-toggle="modal" data-target="#modalEditarAdmin"
-                                onclick="var id = '<?php echo $Admins[$i]['id_admin'];?>'; EditarAdmin(id);">
+                                onclick="var id = '<?php echo $Admins[$i]['id_admin'];?>'; var permiso = '<?php echo $Admins[$i]['permisos'];?>'; EditarAdmin(id, permiso);">
                                 <span class="fui-new"></span>
                                 Editar
                             </a>
@@ -115,6 +124,17 @@ require_once('nav2.php');
                 <div class="form-group">
                     <label for="">Nombre:</label>
                     <input type="text" class="form-control" id="nombreAdmin" name="nombreAdmin"/>
+                    <?php
+                    function traerId(){
+                        $id = '';
+                        $sql = mysql_query("SELECT id_admin FROM admins WHERE id_admin = '{$_GET['id']}'");
+                        while($row = mysql_fetch_array($sql)){
+                            $id = $row['id_admin'];
+                        }
+                        return $id;
+                    }
+                    ?>
+                    <input type="hidden" value="<?php echo traerId();?>" name="idAdmin" id="idAdmin"/>
                 </div>
                 <div class="form-group">
                     <label for="">Contraseña:</label>
@@ -198,7 +218,9 @@ require_once('nav2.php');
 
     include 'vista-sin-permiso.php';
 
-}?>
+}
+}
+?>
 
 
 <script src="../js/vendor/jquery.min.js"></script>

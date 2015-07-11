@@ -19,7 +19,7 @@ while($row = mysql_fetch_array($q2)){
     $cantidad = $row['cantidad'];
     $direccion = $row['direccion'];
     $numero = $row['numero'];
-    $sql = mysql_query("INSERT INTO aprobadas VALUES('NULL','$id_cita','$id','$servicio','$fecha','$comentario','$nombre','$cedula','$rif','$cantidad','$estado_aprobado','$direccion','$numero','$valor','$transferencia')");
+    $sql = mysql_query("INSERT INTO aprobadas VALUES('NULL','$id_cita','$id','$servicio','$fecha','$comentario','$nombre','$cedula','$rif','$cantidad','$estado_aprobado','$direccion','$numero','$valor','$transferencia',now(),now())");
     if($sql){
         mysql_query("DELETE FROM citas WHERE id_usuario = '" . $id . "'");
         mysql_query("DELETE FROM imagenes WHERE id_usuario = '" . $id . "'");

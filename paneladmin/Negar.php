@@ -14,11 +14,20 @@ while($row = mysql_fetch_array($q2)){
     $id_cita = $row['id_cita'];
     $cedula = $row['cedula_usuario'];
     $rif = $row['rif_usuario'];
-    $cantidad = $row['cantidad'];
     $direccion = $row['direccion'];
     $numero = $row['numero'];
-    $sql = mysql_query("DELETE FROM citas WHERE id_usuario = '" . $id . "'");
-    if($sql){
+
+
+    $sql = mysql_query("INSERT INTO negadas VALUES
+    ('NULL','" . $id_cita . "', '" . $id . "', '" . $servicio . "', '" . $fecha . "', '" . $comentario . "',
+     '" . $nombre . "', '" . $cedula . "', '" . $rif . "', '" . $maquinas . "', '" . $estado . "', '" . $direccion . "',
+     '" . $numero . "', '" . $precio . "', now(), now())");
+
+
+
+    $sql2 = mysql_query("DELETE FROM citas WHERE id_usuario = '" . $id . "'");
+    $sql3 = mysql_query("DELETE FROM imagenes WHERE id_usuario = '" . $id . "'");
+    if($sql && $sql2 && $sql3){
         echo 'La cita ha sido negada con éxito';
     } else {
         echo 'Error';

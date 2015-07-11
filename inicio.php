@@ -20,15 +20,13 @@ if(!isset($_SESSION['id_usuario'])){
 </head>
 <body style="background: #ECF0F1">
 <?php require_once('nav.php');?>
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="jumbotron perfil-titulo">
                     <span class="fui-calendar calendario"></span>
                     <p class="text-center">
-                        Solicitar Cita
+                        Solicite una cita
                     </p>
                 </div>
             </div>
@@ -36,13 +34,11 @@ if(!isset($_SESSION['id_usuario'])){
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4 class="text-center panel-text">
-                            Lorem ipsum dolor
+                            ¿Desea que lo atendamos?
                         </h4>
-                        <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec.</p>
+                        <p class="text-justify">Solicite una cita para poder gozar de la realización de cualquiera de nuestros servicios, bien sea de Mantenimiento Preventivo o Correctivo.</p>
                         <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'solicitud.php?id=' . $_SESSION['id_usuario'];?>'">
-                            Solicitar Cita
+                            Solicitar
                         </button>
                     </div>
                 </div>
@@ -53,7 +49,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <div class="jumbotron perfil-titulo3">
                     <span class="fui-upload"></span>
                     <p class="text-center">
-                        Subir Transferencias
+                        Suba sus Transferencias
                     </p>
                 </div>
             </div>
@@ -61,11 +57,9 @@ if(!isset($_SESSION['id_usuario'])){
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4 class="text-center panel-text">
-                            Lorem ipsum dolor
+                            ¿Realizó los pagos requeridos?
                         </h4>
-                        <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec.</p>
+                        <p class="text-justify">Para la aprobación de la cita, debe adjuntar un scaneo, foto o versión digital del comprobante de pago (sólo trabajamos con transferencias electrónicas y depósitos bancarios).</p>
                         <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'subir.php?id=' . $_SESSION['id_usuario'];?>'">Subir Transferencias</button>
                     </div>
                 </div>
@@ -76,7 +70,7 @@ if(!isset($_SESSION['id_usuario'])){
                 <div class="jumbotron perfil-titulo2">
                     <span class="fui-document"></span>
                     <p class="text-center">
-                        Historial de Citas
+                        Consulte su historial
                     </p>
                 </div>
             </div>
@@ -84,13 +78,34 @@ if(!isset($_SESSION['id_usuario'])){
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4 class="text-center panel-text">
-                            Lorem ipsum dolor
+                            ¿Desea ver su histórico?
                         </h4>
-                        <p class="text-justify">Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec
-                            Lorem ipsum dolor sit amec.</p>
+                        <p class="text-justify">Este espacio le permite acceder a su historial de servicios contratados, el cual le permitirá llevar un control de reparaciones y agilizar el contacto con la empresa.</p>
                         <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'historial.php?id=' . $_SESSION['id_usuario']; ?>'">
                             Historial de Citas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron perfil-titulo4">
+                    <span class="fui-user"></span>
+                    <p class="text-center">
+                        Modifique su información
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4 class="text-center panel-text">
+                            ¿Desea cambiar sus datos?
+                        </h4>
+                        <p class="text-justify">Este espacio le permite acceder a su información de usuario y cambiar los datos que prefiera para futuras operaciones en el sitio. Procure suministrar información fiable.</p>
+                        <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'modificar.php?id=' . $_SESSION['id_usuario']; ?>'">
+                            Modificar
                         </button>
                     </div>
                 </div>

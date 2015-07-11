@@ -4,6 +4,9 @@ require_once('admins.php');
 $admin = new Administradores;
 $admin->Sesion();
 $permisos = $admin->Permisos('permisos');
+if(!isset($_SESSION['admin'])){
+    header('Location: index.php');
+} else {
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,9 +120,7 @@ $permisos = $admin->Permisos('permisos');
                                             <span class="fui-new"></span> Editar
                                         </a>
                                         <?php } elseif($permisos == 0) {?>
-                                            <a class='btn btn-success btn-xs disabled' href="javascript:void(0)" data-toggle="modal"
-                                               data-target="#modalEdicion"
-                                               onclick="var id = <?php echo $ad[$i]['id_usuario']; ?>; Editar(id);">
+                                            <a class='btn btn-success btn-xs disabled' href="javascript:void(0)">
                                                 <span class="fui-new"></span> Editar
                                             </a>
                                         <?php }?>
@@ -226,7 +227,7 @@ $permisos = $admin->Permisos('permisos');
     </div>
 </div>
 
-
+<?php }?>
 <script src="../js/vendor/jquery.min.js"></script>
 <script src="../js/flat-ui.min.js"></script>
 <script src="../jquery-ui/jquery-ui.js"></script>

@@ -237,7 +237,8 @@ a:focus {
 /********************************/
 .fade-carousel .slides .slide-1,
 .fade-carousel .slides .slide-2,
-.fade-carousel .slides .slide-3 {
+.fade-carousel .slides .slide-3,
+.fade-carousel .slides .slide-4 {
     height: 100vh;
     background-size: cover;
     background-position: center center;
@@ -252,7 +253,9 @@ a:focus {
 .fade-carousel .slides .slide-3 {
     background-image: url("maquina.jpg");
 }
-
+.fade-carousel .slides .slide-4 {
+    background-image: url("manual.jpg");
+}
 /********************************/
 /*          Media Queries       */
 /********************************/
@@ -554,7 +557,10 @@ hr {
 .perfil-titulo3 {
     background: #2e3f68;
 }
-.perfil-titulo p,.perfil-titulo2 p,.perfil-titulo3 p{
+.perfil-titulo4 {
+    background: #2ECC71;
+}
+.perfil-titulo p,.perfil-titulo2 p,.perfil-titulo3 p, .perfil-titulo4 p {
     color: #fff;
 }
 .panel-text {
@@ -569,7 +575,7 @@ hr {
 .panel-fondo {
     color:#fff;
 }
-.fui-calendar.calendario,.fui-document,.fui-upload {
+.fui-calendar.calendario,.fui-document,.fui-upload, .fui-user {
     margin-left: 43%;
     font-size: 50px;
 }
@@ -598,6 +604,10 @@ table td {
 }
 .tabla-cabecera, .tabla-cabecera th {
     background: #d64242;
+    color: #fff;
+}
+.tabla-cabecera2, .tabla-cabecera2 th {
+    background: #363636;
     color: #fff;
 }
 #nav-admin {

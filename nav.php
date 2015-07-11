@@ -30,7 +30,7 @@
                         <a href="<?php echo 'historial.php?id=' . $_SESSION['id_usuario'];?>" onclick = $("#menu-close").click(); >Historial de citas</a>
                     </li>
                     <li>
-                        <a href="#portfolio" onclick = $("#menu-close").click(); >Modificar datos</a>
+                        <a href="<?php echo 'modificar.php?id=' . $_SESSION['id_usuario'];?>" onclick = $("#menu-close").click(); >Modificar datos</a>
                     </li>
                     <li>
                         <a href="salir.php" onclick = $("#menu-close").click(); >Salir</a>

@@ -1,11 +1,9 @@
 <?php
 //Se incluye el archivo config que contiene las configuraciones de la conexion a la base de datos
 require_once('config.php');
-
 //Se crea la clase Registro, la cual se encargara de registrar a los nuevos usuarios
 class Registro
 {
-
     //Se crean las propiedades que tomaran los valores que se ingresen en el formulario
     protected $nombre;
     protected $correo;
@@ -16,7 +14,6 @@ class Registro
     protected $rif;
     protected $direccion;
     protected $numero;
-
     //Se crea un metodo constructor para iniciar las propiedades
     public function Inicializar($name, $mail, $password, $rpt, $id, $emp, $num_rif, $address, $number)
     {
@@ -30,7 +27,6 @@ class Registro
         $this->direccion = addslashes($_POST[$address]);
         $this->numero = addslashes($_POST[$number]);
     }
-
     //Se crea un metodo que se encarga de verificar que todos los campos fueron llenados
     public function Registrar()
     {
@@ -56,10 +52,22 @@ class Registro
         numero)
         VALUES('$this->nombre', '$this->correo', '$this->pass', '$this->repeat',
         '$this->cedula', '$this->empresa', '$this->rif','$this->direccion','$this->numero')";
+            $q2 = "INSERT INTO
+        usuarios_nuevos (nombre_usuario,
+        correo_usuario,
+        contra_usuario,
+        rpt_usuario,
+        cedula_usuario,
+        empresa_usuario,
+        rif_usuario,
+        direccion,
+        numero, hora, fecha)
+        VALUES('$this->nombre', '$this->correo', '$this->pass', '$this->repeat',
+        '$this->cedula', '$this->empresa', '$this->rif','$this->direccion','$this->numero', now(), now())";
             mysql_query($q);
+            mysql_query($q2);
         }
     }
-
     public function EnviarCorreo()
     {
         $destinatario = $this->correo;
@@ -83,21 +91,12 @@ class Registro
         </body>
         </html>
         ';
-
-//para el envío en formato HTML
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-
-//dirección del remitente
         $headers .= "From: Daniel Da Costa <thedanielpsx@gmail.com>\r\n";
-
-//dirección de respuesta, si queremos que sea distinta que la del remitente
         $headers .= "Reply-To: thedanielpsx@gmail.com\r\n";
-
-
         mail($destinatario, $asunto, $cuerpo, $headers);
     }
-
     public function Redireccionar()
     { //Una vez registrado, este metodo se encarga de mostrar un mensaje de bienvenida y redireccionar a la pagina de inicio
         ?>
@@ -109,7 +108,6 @@ class Registro
     <?php
     }
 }
-
 class Inicio extends Registro
 {
     public function Inicializar($userSesion, $passSesion)
@@ -117,14 +115,12 @@ class Inicio extends Registro
         $this->nombre = addslashes($_POST[$userSesion]);
         $this->pass = addslashes($_POST[$passSesion]);
     }
-
     public function iniciarSesion()
     {
         if (isset($this->nombre) && !empty($this->nombre)
             && isset($this->pass) && !empty($this->pass)
         ) {
             $query = mysql_query("SELECT * FROM usuarios WHERE nombre_usuario = '$this->nombre'");
-
             while ($query_sesion = mysql_fetch_array($query)) {
                 if ($this->pass == $query_sesion['contra_usuario']) {
                     $_SESSION['usuario'] = $this->nombre;
@@ -137,7 +133,6 @@ class Inicio extends Registro
             }
         }
     }
-
     public function mostrarNombre($data)
     {
         $_q = "SELECT * FROM usuarios WHERE id_usuario = '" . addslashes(trim($_GET['id'])) . "'";
@@ -146,27 +141,22 @@ class Inicio extends Registro
             echo strtoupper($consulta['nombre_usuario']);
         }
     }
-
     public function Redirecciona()
     {
         header('Location: inicio.php?id=' . $_SESSION['id_usuario']);
     }
 }
-
 class Subir
 {
     protected $nombreArchivo;
     protected $archivoSubido;
-
     public function __construct($name, $file)
     {
         $this->nombreArchivo = $name;
         $this->archivoSubido = $file;
     }
-
     public function Upload()
     {
-        $archivo = $_FILES[$this->archivoSubido]['name'];
         $directorio = 'imagenes/';
         $directorio_objetivo = $directorio . basename($_FILES[$this->archivoSubido]['name']);
         $tipoImagen = pathinfo($directorio_objetivo, PATHINFO_EXTENSION);
@@ -175,13 +165,15 @@ class Subir
             echo $_FILES[$this->archivoSubido]['error'];
         } else {
             if ($verificarImagen != false) {
-                if ($tipoImagen !== 'jpg' && $tipoImagen !== 'jpeg' && $tipoImagen !== 'png') {
+                if ($tipoImagen !== 'jpg' && $tipoImagen !== 'jpeg' && $tipoImagen !== 'png' && $tipoImagen !== 'xps' && $tipoImagen !== 'oxps') {
                     include 'vista-formato.php';
                     return false;
                 } else {
                     move_uploaded_file($_FILES[$this->archivoSubido]['tmp_name'], $directorio_objetivo);
-                    $query_image = "INSERT INTO imagenes VALUES('NULL','$archivo','$directorio_objetivo','{$_GET['id']}')";
+                    $query_image = "INSERT INTO imagenes VALUES('NULL','$this->nombreArchivo','$directorio_objetivo','{$_GET['id']}')";
+                    $query_log = "INSERT INTO imagenes_historial VALUES('NULL', '$this->nombreArchivo', '$directorio_objetivo', '{$_GET['id']}', now(), now(),'{$_SESSION['usuario']}')";
                     mysql_query($query_image);
+                    mysql_query($query_log);
                     include 'vista-subido.php';
                 }
             } else {
@@ -198,7 +190,6 @@ class Contacto
     public $email;
     public $asunto;
     public $comentario;
-
     public function __construct($name, $mail, $subject, $text)
     {
         $this->nombreContacto = addslashes($_POST[$name]);
@@ -206,12 +197,11 @@ class Contacto
         $this->asunto = addslashes($_POST[$subject]);
         $this->comentario = addslashes($_POST[$text]);
     }
-
     public function EnviarEmailContacto()
     {
         if(isset($this->nombreContacto) && !empty($this->nombreContacto)
-        && isset($this->email) && !empty($this->email)
-        && isset($this->asunto) && !empty($this->asunto)){
+            && isset($this->email) && !empty($this->email)
+            && isset($this->asunto) && !empty($this->asunto)){
             $destinatario = 'thedanielpsx@gmail.com';
             $asunto = $this->asunto;
             $mensaje = 'Detalles del formulario de contacto \n';
@@ -224,7 +214,6 @@ class Contacto
             echo 'Error al enviar el mensaje';
             die();
         }
-
     }
 }
 class Historial
@@ -237,6 +226,18 @@ class Historial
             $this->historial[] = $row;
         }
         return $this->historial;
+    }
+}
+class Modificar
+{
+    public $modificar;
+    public function TraerDatosUsuario($data)
+    {
+        $sql = mysql_query("SELECT * FROM usuarios WHERE id_usuario = '" . $_SESSION['id_usuario'] . "'");
+        while($row = mysql_fetch_array($sql)){
+            $this->modificar = $row[$data];
+        }
+        return $this->modificar;
     }
 }
 ?>
