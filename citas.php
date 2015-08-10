@@ -48,7 +48,7 @@ $cuerpo = '
         Cuota: ' . $_POST['valor'] . ' Bs.F
         </p>
         <p>
-       Comentarios: ' . $_POST['select-comentario'] .'
+       Comentarios: ' . $_POST['select-comentario'] . '
         </p>
         </font>
         <button style="background: #d64242; border-radius: 3px; border: 2px solid #d64242; height: 50px; width: 100px;">
@@ -108,10 +108,7 @@ if ($_POST['select-cita'] == 'Mantenimiento Correctivo') {
 }
 
 
-
-
-
- } ?>
+} ?>
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/flat-ui.min.js"></script>
 <script src="jquery-ui/jquery-ui.js"></script>

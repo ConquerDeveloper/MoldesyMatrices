@@ -57,10 +57,9 @@ if ($aprobado['aprobado'] == 'no'){
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="<?php echo 'citas.php?id=' . $_SESSION['id_usuario']; ?>" method="post"
-                          id="formularioClausulas">
-                        <div class="form-group">
-                            <label for="">Servicio a solicitar:</label>
+                    <form action="<?php echo 'citas.php?id=' . $_SESSION['id_usuario']; ?>" method="post" id="formularioClausulas">
+                        <div class="form-group group-1">
+                            <label>Servicio a solicitar:</label>
                             <select class="form-control" name="select-cita" id="select-cita">
                                 <option value="seleccione">-Seleccione-
                                 </option>
@@ -71,10 +70,10 @@ if ($aprobado['aprobado'] == 'no'){
                                         id="mantenimientoc">Mantenimiento Correctivo
                                 </option>
                             </select>
-                            <span class="blanco1"></span>
+                            <span class="label label-1"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="">Nº de máquinas a ser revisadas:</label>
+                        <div class="form-group group-2">
+                            <label>Nº de máquinas a ser revisadas:</label>
                             <select class="form-control" name="select-numero" id="select-numero" onclick="Calcular()">
                                 <option value="numero-maquinas" id="numero-maquinas">-Seleccione-</option>
                                 <option value="1" id="uno">1</option>
@@ -83,34 +82,26 @@ if ($aprobado['aprobado'] == 'no'){
                                 <option value="4" id="cuatro">4</option>
                                 <option value="5" id="cinco">5</option>
                             </select>
-                            <span class="blanco2"></span>
+                            <span class="label label-2"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="">Fecha de la Cita:</label>
-
+                        <div class="form-group group-3">
+                            <label>Fecha de la Cita:</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" onclick="removerClases()"
                                        onkeydown="removerClases()" name="select-fecha" id="select-fecha"/>
-                                <span class="input-group-addon">
+                                <span class="input-group-addon" style="background: #d64242">
                                     <span class="fui-calendar"></span>
                                 </span>
                             </div>
-                            <span class="blanco3"></span>
+                            <span class="label label-3"></span>
                         </div>
-                        <div class="form-group" id="input-textarea">
-                            <label for="">Descríbanos su falla</label>
-                            <textarea name="select-comentario" id="textarea-comentario" onkeydown="removerClases()"
-                                      rows="3" class="form-control"></textarea>
+                        <div class="form-group group-4" id="input-textarea">
+                            <label>Descríbanos su falla</label>
+                            <textarea name="select-comentario" id="textarea-comentario" onkeydown="removerClases()" rows="3" class="form-control"></textarea>
                         </div>
-                        <span class="blanco4"></span>
-
+                        <span class="label label-4"></span>
                         <div class="form-group">
-                            <p class="text-center alert alert-warning" style="font-size:15px">
-                                Al hacer click en el botón "Enviar", estás aceptando los <a href="javascript:void(0)"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#modalCondiciones">
-                                    Términos y Condiciones de la empresa</a>.
-                            </p>
+                            <p class="text-center alert alert-warning" style="font-size:15px">Al hacer click en el botón "Enviar", estás aceptando los <a href="javascript:void(0)" data-toggle="modal" data-target="#modalCondiciones">Términos y Condiciones de la empresa</a>.</p>
                             <span class="total"></span>
                             <input type="hidden" value="" name="valor" id="total"/>
                         </div>

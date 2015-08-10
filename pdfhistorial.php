@@ -28,26 +28,31 @@ $pdf = new Pdf('P', 'pt', 'Letter');
 $pdf->AddPage();
 $pdf->Cell(0, 50, '', 0, 1);
 $pdf->SetFont('Arial', 'B', 20);
-$pdf->Cell(0, 100, 'Estimado/a ' . ucfirst($_SESSION['usuario']) . '.', 0, 1, 'C');
+$pdf->Cell(0,0, 'Estimado/a ' . ucfirst($_SESSION['usuario']) . '.', 0, 1, 'C');
+$pdf->Cell(0, 50, '', 0, 1);
+$pdf->SetMargins(30,25,30);
+$pdf->SetAutoPageBreak(true, 50);
 $pdf->SetFont('Arial', '', 14);
-$pdf->Cell(0, 30, utf8_decode('Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec'), 0, 1, 'L');
-$pdf->Cell(0, 30, utf8_decode('lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec'), 0, 1, 'L');
-$pdf->Cell(0, 30, utf8_decode('lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec'), 0, 1, 'L');
-$pdf->Cell(0, 30, utf8_decode('lorem ipsum dolor sit amec Lorem ipsum dolor sit amec Lorem ipsum dolor sit amec.'), 0, 1, 'L');
-
-
-
-$pdf->Cell(0, 30, '', 0, 1, 'L');
+$pdf->Write(25, utf8_decode('Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet.'));
+$pdf->Ln();
+$pdf->Ln();
 for($i = 0; $i < sizeof($mostrar); $i ++){
-    $pdf->Cell(0, 30, utf8_decode('El número de cita fue: ') . $mostrar[$i]['id_cita'], 0, 1, 'L');
-    $pdf->Cell(0, 30, utf8_decode('El servicio solicitado fue: ') . $mostrar[$i]['servicio'], 0, 1, 'L');
-    $pdf->Cell(0, 30, utf8_decode('La fecha de su cita fue: ') . $mostrar[$i]['fecha'], 0, 1, 'L');
+    $pdf->Write(25, utf8_decode('El número de cita fue: ') . $mostrar[$i]['id_cita']);
+    $pdf->Ln();
+    $pdf->Write(25, utf8_decode('El servicio solicitado fue: ') . $mostrar[$i]['servicio']);
+    $pdf->Ln();
+    $pdf->Write(25,utf8_decode('La fecha de su cita fue: ') . $mostrar[$i]['fecha']);
     if($mostrar[$i]['servicio'] == 'Mantenimiento Correctivo'){
-        $pdf->Cell(0, 30, utf8_decode('La razón de la solicitud fue: ' . $mostrar[$i]['descripcion']), 0, 1, 'L');
+        $pdf->Ln();
+        $pdf->Write(25, utf8_decode('La razón de la solicitud fue: ' . $mostrar[$i]['descripcion']));
     }
-    $pdf->Cell(0, 30, utf8_decode('La cantidad de máquinas a revisar fue: ') . $mostrar[$i]['cantidad'], 0, 1, 'L');
-    $pdf->Cell(0, 30, utf8_decode('El precio padago fue: ') . $mostrar[$i]['valor'] . ' Bs.F', 0, 1, 'L');
-    $pdf->Cell(0, 30, utf8_decode('La reparación realizada fue: ' . $mostrar[$i]['reparacion']), 0, 1, 'L');
-    $pdf->Cell(0, 30, '', 0, 1, 'L');
+    $pdf->Ln();
+    $pdf->Write(25, utf8_decode('La cantidad de máquinas a revisar fue: ') . $mostrar[$i]['cantidad']);
+    $pdf->Ln();
+    $pdf->Write(25, utf8_decode('El precio padago fue: ') . $mostrar[$i]['valor'] . ' Bs.F');
+    $pdf->Ln();
+    $pdf->Write(25, utf8_decode('La reparación realizada fue: ' . $mostrar[$i]['reparacion']));
+    $pdf->Ln();
+    $pdf->Ln();
 }
 $pdf->Output();

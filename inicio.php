@@ -25,17 +25,13 @@ if(!isset($_SESSION['id_usuario'])){
             <div class="col-md-6">
                 <div class="jumbotron perfil-titulo">
                     <span class="fui-calendar calendario"></span>
-                    <p class="text-center">
-                        Solicite una cita
-                    </p>
+                    <p class="text-center">Solicite una cita</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h4 class="text-center panel-text">
-                            ¿Desea que lo atendamos?
-                        </h4>
+                        <h5 class="text-center panel-text">¿Desea que lo atendamos?</h5>
                         <p class="text-justify">Solicite una cita para poder gozar de la realización de cualquiera de nuestros servicios, bien sea de Mantenimiento Preventivo o Correctivo.</p>
                         <button class="btn btn-danger btn-block" onclick="location.href='<?php echo 'solicitud.php?id=' . $_SESSION['id_usuario'];?>'">
                             Solicitar

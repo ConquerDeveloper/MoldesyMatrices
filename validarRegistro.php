@@ -78,10 +78,3 @@ class ValidarRegistro {
 }
 $validacion = new ValidarRegistro('nombreUsuario', 'correoUsuario', 'passUsuario', 'rptpassUsuario', 'cedulaUsuario', 'empresaUsuario', 'rifUsuario','direccionUsuario','numeroUsuario');
 $validacion->ValidarValores();
-
-
-
-
-
-
-?>

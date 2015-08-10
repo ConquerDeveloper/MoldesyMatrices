@@ -6,6 +6,38 @@ $(window).scroll(function () {
         $(".navbar-fixed-top").removeClass("top-nav-collapse");
     }
 });
+
+
+$(".modal").on("hidden.bs.modal", function () {
+    $(this).find("form")[0].reset();
+    $(".form-group").removeClass("has-error has-feedback");
+    $(".label").removeClass("label-danger").html("");
+});
+
+
+$(function () {
+    $("#nombreUsuario").on("keyup", function () {
+        if ($(this).val().length == 10) {
+            $(".group-1").addClass("has-error has-feedback");
+            $(".label-1").addClass("label-danger").html("Ha excedido el límite de caracteres (10)");
+        }
+    });
+});
+
+$(function () {
+    $(".form-group").on("keydown", function () {
+        $(this).removeClass("has-error has-feedback");
+        $(".label").removeClass("label-danger").html("");
+    });
+});
+
+$(function () {
+    $("#formularioClausulas").find(".form-control").on("click", function () {
+        $(".form-group").removeClass("has-error has-feedback");
+        $(".label").removeClass("label-danger").html("");
+    });
+});
+
 function Scroll() {
     $("html,body").animate({
         scrollTop: 0
@@ -14,8 +46,20 @@ function Scroll() {
         $("#triggerModal").trigger("click");
     }, 500);
 }
-$("#modalRegistro, #modalInicio").on("shown.bs.modal", function () {
-    $("#nombreUsuario,#nombreInicio").focus();
+$(function () {
+    $(".modal").on("shown.bs.modal", function () {
+        $(this).find(".form-control")[0].focus();
+    });
+});
+$(function () {
+    $("#formularioSubir").find(".group-2").on("click", function () {
+        $(".group-2").removeClass("has-error has-feedback");
+        $(".label-2").removeClass("label-danger").html("");
+    });
+    $(this).find(".group-2").on("keyup", function () {
+        $(".group-1").removeClass("has-error has-feedback");
+        $(".label-1").removeClass("label-danger").html("");
+    });
 });
 //funcion que valida con ajax todos los campos del form de registro al hacer click en el boton de envio
 function validarRegistro() {
@@ -25,82 +69,73 @@ function validarRegistro() {
         data: $("#formularioRegistro").serialize(),
         success: function (respuesta) {
             if (respuesta == "Incompleto") {
-                $("#nombreUsuario").addClass("inputRojo");
-                $(".vacio1").addClass("inputIncompleto");
-                $("#correoUsuario").addClass("inputRojo");
-                $(".vacio2").addClass("inputIncompleto");
-                $("#passUsuario").addClass("inputRojo");
-                $(".vacio3").addClass("inputIncompleto");
-                $("#rptpassUsuario").addClass("inputRojo");
-                $(".vacio4").addClass("inputIncompleto");
-                $("#cedulaUsuario").addClass("inputRojo");
-                $(".vacio5").addClass("inputIncompleto");
-                $("#empresaUsuario").addClass("inputRojo");
-                $(".vacio6").addClass("inputIncompleto");
-                $("#rifUsuario").addClass("inputRojo");
-                $(".vacio7").addClass("inputIncompleto");
-                $("#direccionUsuario").addClass("inputRojo");
-                $(".vacio8").addClass("inputIncompleto");
-                $("#numeroUsuario").addClass("inputRojo");
-                $(".vacio9").addClass("inputIncompleto");
+                $(".form-group").addClass("has-error has-feedback");
+                $(".label").addClass("label-danger").html("Complete este campo");
                 return false;
             } else if (respuesta == "Incompleto2") {
-                $("#nombreUsuario").addClass("inputRojo");
-                $(".vacio1").addClass("inputIncompleto");
+                $(".group-1").addClass("has-error has-feedback");
+                $(".label-1").addClass("label-danger").html("Complete este campo");
                 return false;
             } else {
                 if (respuesta == "Incompleto3") {
-                    $("#correoUsuario").addClass("inputRojo");
-                    $(".vacio2").addClass("inputIncompleto");
+                    $(".group-2").addClass("has-error has-feedback");
+                    $(".label-2").addClass("label-danger").html("Complete este campo");
                     return false;
                 } else if (respuesta == "Incompleto4") {
-                    $("#passUsuario").addClass("inputRojo");
-                    $(".vacio3").addClass("inputIncompleto");
+                    $(".group-3").addClass("has-error has-feedback");
+                    $(".label-3").addClass("label-danger").html("Complete este campo");
                     return false;
                 } else {
                     if (respuesta == "Incompleto5") {
-                        $("#rptpassUsuario").addClass("inputRojo");
-                        $(".vacio4").addClass("inputIncompleto");
+                        $(".group-4").addClass("has-error has-feedback");
+                        $(".label-4").addClass("label-danger").html("Complete este campo");
                         return false;
                     } else if (respuesta == "Incompleto6") {
-                        $("#cedulaUsuario").addClass("inputRojo");
-                        $(".vacio5").addClass("inputIncompleto");
+                        $(".group-5").addClass("has-error has-feedback");
+                        $(".label-5").addClass("label-danger").html("Complete este campo");
                         return false;
                     } else {
                         if (respuesta == "Incompleto7") {
-                            $("#empresaUsuario").addClass("inputRojo");
-                            $(".vacio6").addClass("inputIncompleto");
+                            $(".group-6").addClass("has-error has-feedback");
+                            $(".label-6").addClass("label-danger").html("Complete este campo");
                             return false;
                         } else if (respuesta == "Incompleto8") {
-                            $("#rifUsuario").addClass("inputRojo");
-                            $(".vacio7").addClass("inputIncompleto");
+                            $(".group-7").addClass("has-error has-feedback");
+                            $(".label-7").addClass("label-danger").html("Complete este campo");
                             return false;
                         } else {
                             if (respuesta == "nombreExistente") {
-                                $(".vacio1").addClass("usuarioExistente");
+                                $(".group-1").addClass("has-error has-feedback");
+                                $(".label-1").addClass("label-danger").html("Nombre de usuario en uso");
                                 return false;
                             } else if (respuesta == "correoExistente") {
-                                $(".vacio2").addClass("correoExiste");
+                                $(".group-2").addClass("has-error has-feedback");
+                                $(".label-2").addClass("label-danger").html("Correo en uso");
                                 return false;
                             } else {
                                 if (respuesta == "correoFalso") {
-                                    $(".vacio2").addClass("correoInvalido");
+                                    $(".group-2").addClass("has-error has-feedback");
+                                    $(".label-2").addClass("label-danger").html("Correo inválido");
                                     return false;
                                 } else if (respuesta == "noCoinciden") {
-                                    $(".vacio4").addClass("noCoinciden");
+                                    $(".group-3").addClass("has-error has-feedback");
+                                    $(".group-4").addClass("has-error has-feedback");
+                                    $(".label-3").addClass("label-danger").html("Las contraseñas no coinciden");
+                                    $(".label-4").addClass("label-danger").html("Las contraseñas no coinciden");
                                     return false;
                                 } else {
                                     if (respuesta == "cedulaExistente") {
-                                        $(".vacio5").addClass("cedulaExiste");
+                                        $(".group-5").addClass("has-error has-feedback");
+                                        $(".label-5").addClass("label-danger").html("N° de cédula en uso");
                                         return false;
                                     } else if (respuesta == "Incompleto9") {
-                                        $("#direccionUsuario").addClass("inputRojo");
-                                        $(".vacio8").addClass("inputIncompleto");
+                                        $(".group-8").addClass("has-error has-feedback");
+                                        $(".label-8").addClass("label-danger").html("Complete este campo");
                                         return false;
                                     } else {
                                         if (respuesta == "Incompleto10") {
-                                            $("#numeroUsuario").addClass("inputRojo");
-                                            $(".vacio9").addClass("inputIncompleto");
+                                            $(".group-9").addClass("has-error has-feedback");
+                                            $(".label-9").addClass("label-danger").html("Complete este campo");
                                             return false;
                                         }
                                         $("#formularioRegistro").submit();
@@ -121,20 +156,21 @@ function validarInicio() {
         data: $("#formularioInicio").serialize(),
         success: function (response) {
             if (response == "Incompleto") {
-                $("#nombreInicio,#passInicio").addClass("inputRojo");
-                $(".blank1,.blank2").addClass("inputIncompleto");
+                $(".form-group").addClass("has-error has-feedback");
+                $(".label").addClass("label-danger").html("Complete este campo");
                 return false;
             } else if (response == "Incompleto2") {
-                $("#nombreInicio").addClass("inputRojo");
-                $(".blank1").addClass("inputIncompleto");
+                $(".group-1").addClass("has-error has-feedback");
+                $(".label-1").addClass("label-danger").html("Complete este campo");
                 return false;
             } else {
                 if (response == "Incompleto3") {
-                    $("#passInicio").addClass("inputRojo");
-                    $(".blank2").addClass("inputIncompleto");
+                    $(".group-2").addClass("has-error has-feedback");
+                    $(".label-2").addClass("label-danger").html("Complete este campo");
                     return false;
                 } else if (response == "cuentaInexistente") {
-                    $(".blank2").addClass("cuentaInexistente");
+                    $(".form-group").addClass("has-error has-feedback");
+                    $(".label").addClass("label-danger").html("Combinación de usuario y contraseña incorrectos");
                     return false;
                 }
                 $("#formularioInicio").submit();
@@ -143,28 +179,6 @@ function validarInicio() {
     });
 }
 
-//Funciones que remueven todos los estilos y mensajes de las validaciones del form de registro
-function removerClases() {
-    $("#nombreUsuario, #correoUsuario, #passUsuario, #rptpassUsuario, #cedulaUsuario, #empresaUsuario, #rifUsuario,#nombreInicio,#passInicio,#select-fecha,#select-cita,#textarea-comentario,#select-numero,#direccionUsuario,#numeroUsuario,#nombreArchivo,#archivoSubido,#nombre-admin,#contra-admin").removeClass("inputRojo");
-    $(".vacio1, .vacio2, .vacio3, .vacio4, .vacio5, .vacio6, .vacio7,.vacio8,.vacio9,.blank1,.blank2,.blanco1,.blanco2,.blanco3,.blanco4,.blanco-1,.blanco-2,.empty1.empty2").removeClass("inputIncompleto");
-    $(".vacio5").removeClass("cedulaExiste");
-    $(".vacio2").removeClass("correoInvalido");
-    $(".vacio2").removeClass("correoExiste");
-    $(".vacio4").removeClass("noCoinciden");
-    $(".vacio1").removeClass("usuarioExistente");
-    $(".blank2").removeClass("cuentaInexistente");
-    $(".empty2").removeClass("cuentaInexistente");
-    $(".blanco3").removeClass("fechaInvalida");
-}
-function removerLimite() {
-    if ($("#nombreUsuario").val().length >= 25) {
-        $(".vacio1").addClass("numExcedido");
-        return false;
-    } else {
-        $(".vacio1").removeClass("numExcedido");
-        return true;
-    }
-}
 
 $("#menu-close").click(function (e) {
     e.preventDefault();
@@ -204,26 +218,26 @@ function validarSolicitud() {
         data: $("#formularioClausulas").serialize(),
         success: function (response) {
             if (response == "vacio1") {
-                $("#select-cita").addClass("inputRojo");
-                $(".blanco1").addClass("inputIncompleto");
+                $(".group-1").addClass("has-error has-feedback");
+                $(".label-1").addClass("label-danger").html("Seleccione una cita");
                 return false;
             } else if (response == "vacio2") {
-                $("#select-numero").addClass("inputRojo");
-                $(".blanco2").addClass("inputIncompleto");
+                $(".group-2").addClass("has-error has-feedback");
+                $(".label-2").addClass("label-danger").html("Seleccione el n° de máquinas");
                 return false;
             } else {
                 if (response == "vacio3") {
-                    $("#select-fecha").addClass("inputRojo");
-                    $(".blanco3").addClass("inputIncompleto");
+                    $(".group-3").addClass("has-error has-feedback");
+                    $(".label-3").addClass("label-danger").html("Seleccione una fecha");
                     return false;
                 } else if (response == "invalido") {
-                    $("#select-fecha").addClass("inputRojo");
-                    $(".blanco3").addClass("fechaInvalida");
+                    $(".group-3").addClass("has-error has-feedback");
+                    $(".label-3").addClass("label-danger").html("Asegúrate de ingresar una fecha que no sea el día actual o anterior a este");
                     return false;
                 } else {
                     if (response == "vacio4") {
-                        $("#textarea-comentario").addClass("inputRojo");
-                        $(".blanco4").addClass("inputIncompleto");
+                        $(".group-4").addClass("has-error has-feedback");
+                        $(".label-4").addClass("label-danger").html("Describa su falla");
                         return false;
                     } else if (response == "listo") {
                         var c = confirm("¿Está seguro de los datos ingresados?");
@@ -262,21 +276,21 @@ function Calcular() {
         success: function (response) {
             if (response == "nada") {
                 $(".total").html("");
-            } else if (response == "1.000") {
+            } else if (response == "1000") {
                 $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
                 $("#total").val(response);
             } else {
-                if (response == "2.000") {
+                if (response == "2000") {
                     $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
                     $("#total").val(response);
-                } else if (response == "3.000") {
+                } else if (response == "3000") {
                     $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
                     $("#total").val(response);
                 } else {
-                    if (response == "4.000") {
+                    if (response == "4000") {
                         $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
                         $("#total").val(response);
-                    } else if (response == "5.000") {
+                    } else if (response == "5000") {
                         $(".total").html("Total a Pagar: " + response + " Bs.F").css("color", "#363636");
                         $("#total").val(response);
                     }
@@ -288,13 +302,13 @@ function Calcular() {
 function validarSubida() {
     $("#formularioSubir").submit(function (e) {
         if ($("#nombreArchivo").val() == "") {
-            $("#nombreArchivo").addClass("inputRojo");
-            $(".blanco-1").addClass("inputIncompleto");
+            $(".group-1").addClass("has-error has-feedback");
+            $(".label-1").addClass("label-danger").html("Complete este campo");
             return false;
             e.preventDefault();
         } else if ($("#archivoSubido").val() == "") {
-            $("#archivoSubido").addClass("inputRojo");
-            $(".blanco-2").addClass("inputIncompleto");
+            $(".group-2").addClass("has-error has-feedback");
+            $(".label-2").addClass("label-danger").html("Seleccione una imagen");
             return false;
             e.preventDefault();
         } else {
@@ -436,7 +450,7 @@ function noExcursion(date) {
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
 $(function () {
-    $("#select-fecha,#fechaModificable").datepicker({
+    $("#select-fecha,#fechaModificable,#fechaInicial,#fechaFinal").datepicker({
         beforeShowDay: noExcursion
     });
 });
@@ -575,4 +589,38 @@ function EliminacionAdmin() {
             }
         }
     });
+}
+$(".imagen").colorbox({rel: 'imagen', width: '90%', height: '90%'});
+function Reparacion(id) {
+    $("#reparacionHidden").val(id);
+}
+function Reparar() {
+    var reparacion = $("#reparacionHidden").val();
+    var texto = $("#text-area-reparacion").val();
+    $params = {
+        reparacion: reparacion,
+        texto: texto
+    };
+    $.ajax({
+        url: "reparacion.php",
+        type: "POST",
+        data: $params,
+        success: function (response) {
+            if (response == "La reparación se insertó exitosamente") {
+                alert(response);
+                self.location.reload();
+            } else {
+                alert(response);
+            }
+        }
+    });
+}
+function verReparacion(id, nombre, servicio, fecha, descripcion, cantidad, valor, reparacion) {
+    $("#nombreReparacion").val(nombre);
+    $("#servicioReparacion").val(servicio);
+    $("#fechaReparacion").val(fecha);
+    $("#comentarioReparacion").val(descripcion);
+    $("#maquinasReparacion").val(cantidad);
+    $("#precioReparacion").val(valor);
+    $("#reparacion").val(reparacion);
 }

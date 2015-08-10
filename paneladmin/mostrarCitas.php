@@ -432,40 +432,6 @@ if (mysql_num_rows($q) > 0 || mysql_num_rows($q2) > 0) {
     $(document).ready(function () {
         $("*#tablaAprobadas").hide();
     });
-    $(".imagen").colorbox({rel:'imagen', width:'90%', height:'90%'});
-    function Reparacion(id){
-        $("#reparacionHidden").val(id);
-    }
-    function Reparar(){
-        var reparacion = $("#reparacionHidden").val();
-        var texto = $("#text-area-reparacion").val();
-        $params = {
-            reparacion: reparacion,
-            texto: texto
-        };
-        $.ajax({
-            url:"reparacion.php",
-            type: "POST",
-            data: $params,
-            success: function(response){
-                if(response == "La reparación se insertó exitosamente"){
-                    alert(response);
-                    self.location.reload();
-                } else {
-                    alert(response);
-                }
-            }
-        });
-    }
-    function verReparacion(id, nombre, servicio, fecha, descripcion, cantidad, valor, reparacion){
-        $("#nombreReparacion").val(nombre);
-        $("#servicioReparacion").val(servicio);
-        $("#fechaReparacion").val(fecha);
-        $("#comentarioReparacion").val(descripcion);
-        $("#maquinasReparacion").val(cantidad);
-        $("#precioReparacion").val(valor);
-        $("#reparacion").val(reparacion);
-    }
 </script>
 </body>
 </html>

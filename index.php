@@ -215,50 +215,50 @@ if(isset($_SESSION['usuario'])){
                 </div>
                 <div class="modal-body">
                     <form name="registro" method="post" action="registro-completado.php" id="formularioRegistro">
-                        <div class="form-group">
-                            <label for="nombreUsuario">Nombre de usuario:</label>
-                            <input type="text" maxlength="25" name="nombreUsuario" onkeydown="removerClases();removerLimite();" class="form-control" id="nombreUsuario"/>
-                            <span class="vacio1"></span>
+                        <div class="form-group group-1">
+                            <label class="control-label">Nombre de usuario:</label>
+                            <input type="text" maxlength="10" name="nombreUsuario" onkeydown="removerClases();removerLimite();" class="form-control" id="nombreUsuario"/>
+                            <span class="label label-1"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="correoUsuario">Correo electrónico:</label>
+                        <div class="form-group group-2">
+                            <label class="control-label">Correo electrónico:</label>
                             <input type="email" name="correoUsuario" onkeydown="removerClases()" class="form-control" id="correoUsuario"/>
-                            <span class="vacio2"></span>
+                            <span class="label label-2"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="passUsuario">Contraseña:</label>
+                        <div class="form-group group-3">
+                            <label class="control-label">Contraseña:</label>
                             <input type="password" name="passUsuario" onkeydown="removerClases()" class="form-control" id="passUsuario"/>
-                            <span class="vacio3"></span>
+                            <span class="label label-3"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="rptpassUsuario">Repetir contraseña:</label>
+                        <div class="form-group group-4">
+                            <label class="control-label">Repetir contraseña:</label>
                             <input type="password" name="rptpassUsuario" onkeydown="removerClases()" class="form-control" id="rptpassUsuario"/>
-                            <span class="vacio4"></span>
+                            <span class="label label-4"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="cedulaUsuario">Cédula:</label>
+                        <div class="form-group group-5">
+                            <label class="control-label">Cédula:</label>
                             <input type="text" name="cedulaUsuario" onkeydown="removerClases()" class="form-control" id="cedulaUsuario"/>
-                            <span class="vacio5"></span>
+                            <span class="label label-5"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="empresaUsuario">Empresa:</label>
+                        <div class="form-group group-6">
+                            <label class="control-label">Empresa:</label>
                             <input type="text" name="empresaUsuario" onkeydown="removerClases()" class="form-control" id="empresaUsuario"/>
-                            <span class="vacio6"></span>
+                            <span class="label label-6"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="rifUsuario">Rif de la empresa:</label>
+                        <div class="form-group group-7">
+                            <label class="control-label">Rif de la empresa:</label>
                             <input type="text" name="rifUsuario" onkeydown="removerClases()" class="form-control" id="rifUsuario"/>
-                            <span class="vacio7"></span>
+                            <span class="label label-7"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="direccionUsuario">Dirección:</label>
+                        <div class="form-group group-8">
+                            <label class="control-label">Dirección:</label>
                             <input type="text" name="direccionUsuario" onkeydown="removerClases()" class="form-control" id="direccionUsuario"/>
-                            <span class="vacio8"></span>
+                            <span class="label label-8"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="numeroUsuario">Número:</label>
+                        <div class="form-group group-9">
+                            <label class="control-label">Número:</label>
                             <input type="text" name="numeroUsuario" onkeydown="removerClases()" class="form-control" id="numeroUsuario"/>
-                            <span class="vacio9"></span>
+                            <span class="label label-9"></span>
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -282,15 +282,15 @@ if(isset($_SESSION['usuario'])){
                 </div>
                 <div class="modal-body">
                     <form name="registro" method="post" action="iniciado.php" id="formularioInicio">
-                        <div class="form-group">
-                            <label for="nombreInicio">Nombre de usuario:</label>
+                        <div class="form-group group-1">
+                            <label class="control-label">Nombre de usuario:</label>
                             <input type="text" name="nombreInicio" onkeydown="removerClases()" class="form-control" id="nombreInicio"/>
-                            <span class="blank1"></span>
+                            <span class="label label-1"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="passInicio">Contraseña:</label>
+                        <div class="form-group group-2">
+                            <label class="control-label">Contraseña:</label>
                             <input type="password" name="passInicio" onkeydown="removerClases()" class="form-control" id="passInicio"/>
-                            <span class="blank2"></span>
+                            <span class="label label-2"></span>
                         </div>
                 </div>
                 <div class="modal-footer">

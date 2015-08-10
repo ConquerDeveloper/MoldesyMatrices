@@ -34,17 +34,17 @@ if(isset($_SESSION['admin'])){
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form action="iniciado.php" method="post" name="formAdmin" id="formAdmin">
-                        <div class="form-group">
-                            <label for="">Admin:</label>
+                        <div class="form-group group-1">
+                            <label>Admin:</label>
                             <input type="text" name="nombreAdmin" class="form-control" required="required"
                                    id="nombre-admin"/>
-                            <span class="empty1"></span>
+                            <span class="label label-1"></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group group-2">
                             <label for="">Contraseña:</label>
                             <input type="password" name="contraAdmin" class="form-control" required="required"
                                    id="contra-admin"/>
-                            <span class="empty2"></span>
+                            <span class="label label-2"></span>
                         </div>
                         <button class="btn btn-danger btn-block" type="submit">Entrar</button>
                     </form>
@@ -62,6 +62,7 @@ if(isset($_SESSION['admin'])){
     $(document).ready(function () {
         $("#nombre-admin").focus();
     });
+
 </script>
 </body>
 </html>

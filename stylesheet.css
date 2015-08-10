@@ -283,12 +283,6 @@ a:focus {
     color:#444;
     font-family: "Lato", sans-serif;
 }
-.form-control,
-.form-control:hover,
-.form-control:focus,
-.form-control:active {
-    border: 3px solid #BDC3C7;
-}
 #seccion-titulo {
     color: #fff;
     font-size: 28px;
@@ -357,54 +351,6 @@ footer a {
     font-weight: 700;
     color: #9AA4AF;
     margin-right: 36px;
-    font-size: 13px;
-}
-.inputRojo,.inputRojo:hover,.inputRojo:focus,.inputRojo:active {
-    border: 2px solid red;
-}
-.inputIncompleto:after {
-    content: "Completa este campo";
-    color: red;
-    font-size: 13px;
-}
-.usuarioExistente:after {
-    content: "Este nombre de usuario se encuentra en uso";
-    color: red;
-    font-size: 13px;
-}
-.correoExiste:after {
-    content: "Este correo se encuentra en uso";
-    color: red;
-    font-size: 13px;
-}
-.correoInvalido:after {
-    content: "Este correo no es valido";
-    color: red;
-    font-size: 13px;
-}
-.noCoinciden:after {
-    content: "Las claves no coinciden";
-    color: red;
-    font-size: 13px;
-}
-.numExcedido:after {
-    content: "Tu nombre de usuario no debe exceder los 25 caracteres";
-    color: red;
-    font-size: 13px;
-}
-.cedulaExiste:after {
-    content:"Este numero de cedula se encuentra en uso";
-    color: red;
-    font-size: 13px;
-}
-.cuentaInexistente:after{
-    content:"Usuario o contraseña incorrectos";
-    color: red;
-    font-size: 13px;
-}
-.fechaInvalida:after {
-    content: "Asegúrate de ingresar una fecha que no sea el día actual o anterior a este";
-    color: red;
     font-size: 13px;
 }
 #navegador {

@@ -30,6 +30,9 @@
                             <a href="<?php echo 'auditorias.php?id=' . $_SESSION['id'];?>">Auditorías</a>
                         </li>
                         <li>
+                            <a href="<?php echo 'reportes.php?id=' . $_SESSION['id']; ?>">Reporte de ingresos</a>
+                        </li>
+                        <li>
                             <a href="salir.php">Salir</a>
                         </li>
                     </ul>
